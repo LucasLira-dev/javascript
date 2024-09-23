@@ -12,7 +12,10 @@
 
         document.write(`seu nome em maiscuculo é ${nome.toUpperCase ()} <br>`)
 
-        document.write(`seu nome em minusculo é ${nome.toLowerCase()}`)
+        document.write(`seu nome em minusculo é ${nome.toLowerCase()} <br>`)
+        var salario = Number (window.prompt('digite seu salario '))
+    
+        document.write(`ola ${nome} seu salario é ${salario.toLocaleString('pt-BR', {style:"currency", currency: "BRL"})}`)
     </script>
 </body>
 </html>

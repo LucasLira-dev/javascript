@@ -8,8 +8,9 @@
         div#area {
             background-color: green;
             color: antiquewhite;
-            width: 200px;
+            width: 400px;
             height: 200px;
+            margin: auto;
             font: normal 15px Arial;
             line-height: 200px;
             text-align: center;
@@ -18,14 +19,14 @@
 </head>
 <body>
     <div id="area">
-        interaja....
+        CLICA AQUI
     </div>
     <script>
         var a = document.getElementById('area')
         a.addEventListener('click', clicar)
         a.addEventListener('mouseenter', entrar)
         a.addEventListener('mouseout', sair)
-
+        
         function clicar (){
             a.innerText = 'clicou'
             a.style.background = 'red'
@@ -34,13 +35,17 @@
         function entrar () {
 
             a.innerText = 'entrou'
-            a.style.background = 'blue'
+            a.style.background = 'yellow'
+            a.style.color = 'black'
         }
 
         function sair () {
             a.innerText = 'saiu'
-            a.style.background = 'green'
+            a.style.background = 'purple'
+            a.style.color = 'red'
         }
+
+        
     </script>
 </body>
 </html>

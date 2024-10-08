@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nacionalidade</title>
+</head>
+<body>
+    <h1> brasileiro ou estrangeiro ?</h1>
+    país onde vc nasceu <input type="text" name="nac" id="nac">
+    <input type="button" value="verificar" onclick="nacionalidade()">
+    <div id="país">
+
+    </div>
+
+    <script>
+        function nacionalidade() {
+            var nascimento = document.getElementById('nac')
+            var local = document.getElementById('país')
+            var lugar = String(nac.value)
+            if (lugar == 'brasil') {
+               local.innerHTML = ` nascendo em ${nac.value}   voce é <strong> brasileiro </strong>`
+            } else {
+                local.innerHTML = ` nascendo em ${nac.value}  voce é <strong> estrangeiro </strong>`
+            }
+        }
+    </script>
+</body>
+</html>

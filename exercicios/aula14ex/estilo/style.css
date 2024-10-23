@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+body {
+    background-color: rgb(116, 116, 218);
+}
+
+h1 {
+    text-align: center;
+    color: antiquewhite;
+}
+
+form {
+    background-color: antiquewhite;
+    margin: auto;
+    width: 400px;
+}
+
+form label {
+    margin: 5px;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+input {
+    width: 200px;
+    height: 10px;
+    margin: 10px;
+    padding: 10px;
+
+}
+
+#contar {
+    height: 30px;
+    width: 80px;
+}

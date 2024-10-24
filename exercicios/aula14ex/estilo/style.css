@@ -33,3 +33,7 @@ input {
     height: 30px;
     width: 80px;
 }
+
+footer {
+    text-align: center;
+}

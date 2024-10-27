@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> contando </h1>
+    <p> até que numero vocé deseja contar ? <input type="number" name="inum" id="inum">
+    <input type="button" value="contar" onclick="contagem()"> </p>
+    <div>
+        <select name="res" id="res" size="10"></select>
+    </div>
+
+    <script>
+        function contagem() {
+            var num = document.getElementById('inum')
+            var res = document.getElementById('res')
+
+            if (num.value.length == 0) {
+                window.alert('impossivel contar')
+            } else {
+                var n = Number(num.value)
+                let c = 1
+                res.innerHTML = ''
+                while ( c <= n) {
+                    let item = document.createElement('option')
+                    item.text = `${c}`
+                    res.appendChild(item)
+                    c++
+                }
+            }
+        }
+    </script>
+</body>
+</html>

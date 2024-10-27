@@ -9,22 +9,60 @@
 <body>
     <header>
         <h1>
-          titulo
+          tabuada
         </h1>
     </header>
 
     <section>
-        <div id="conteiner">
-
+        <div>
+            
+             <p> Número:
+                <input type="number" name="num" id="txtn">
+                <input type="button" value="gerar tabuada" onclick="tabuada()">
+            </p>
+               
         </div>
-        <div id="imagem">
 
-        </div>
+        <div>
+             <select name="tabuada" id="tabuada" size="10"></select>   
+         </div>  
+
+            
+      
+        
     </section>
 
     <footer>
         <p> &copy; curso em video</p>
     </footer>
+
+    <script>
+
+        function tabuada(){
+            var num = document.getElementById('txtn')
+            var tab = document.getElementById('tabuada')
+
+            if (num.value.length == 0) {
+                window.alert('digite um numero')
+            } else {
+                let n = Number(num.value)
+                let c = 1
+                tab.innerHTML = ''
+                while (c <= 10) {
+                    let item = document.createElement('option')
+                    item.text = `${n} x ${c} = ${n*c}`
+                    tab.appendChild(item)
+                    c++
+                }
+            }
+        }
+
+    </script>
+
+
+
+
+
 
     <script src="script.js"></script>
 </body>

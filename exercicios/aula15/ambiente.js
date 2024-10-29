@@ -1,6 +1,5 @@
 let num = [5,2,8,9,3]
 num.push(1)
-num.
 num.sort()
 console.log(num)
 console.log(`o vetor tem ${num.length} posições `)

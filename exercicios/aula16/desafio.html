@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mega desafio</title>
+    <style>
+
+        body {
+            background-color: rgb(45, 45, 150);
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+        }
+
+        section {
+            background-color: white;
+            margin: auto;
+            width: 80vw;
+        }
+
+        select {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        analisador de números
+    </h1>
+
+    <section>
+        <p> Numero entre 1 e 100 
+        <input type="number" name="inum" id="inum" minlength="1" maxlength="100">
+            <input type="button" value="adicionar" onclick="adicionar()">
+            <select name="res" id="res" size="10">
+               
+            </select>
+        </p>
+
+        <input type="button" value="Finalizar" onclick="finalizar()">
+
+        <div id="resposta">
+
+        </div>
+    </section>
+
+    <script>
+        function adicionar() {
+            var inum = document.getElementById('inum')
+            var resp = document.getElementById('res')
+            var r = document.getElementById('resposta')
+            var num = Number(inum.value)
+            if(num < 1 || num > 100) {
+                alert('numero inválido')
+            } else {
+                
+                let res = document.createElement('option')
+                res.text = `o número ${num} foi adicionado`
+                resp.appendChild(res)
+            }
+        
+        }
+ 
+        /* isso foi apenas um teste
+        function finalizar() {
+            var inum = document.getElementById('inum')
+            var resp = document.getElementById('res')
+            var r = document.getElementById('resposta')
+            var num = Number(inum.value)
+            let maiornum = 0
+                if(maiornum < num) {
+                    maiornum = num
+                }
+
+                r.innerHTML = `o maior numero foi ${maiornum}`
+        } */
+        
+
+       
+    </script>
+    
+</body>
+</html>

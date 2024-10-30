@@ -48,36 +48,76 @@
     </section>
 
     <script>
-        function adicionar() {
-            var inum = document.getElementById('inum')
-            var resp = document.getElementById('res')
-            var r = document.getElementById('resposta')
-            var num = Number(inum.value)
-            if(num < 1 || num > 100) {
-                alert('numero inválido')
+        var inum = document.getElementById('inum')
+        var resp = document.getElementById('res')
+        var r = document.getElementById('resposta')
+        var valores = []
+
+        function isnumero(n) {
+            if(Number(n) >= 1 && Number(n) <= 100) {
+                return true
             } else {
-                
-                let res = document.createElement('option')
-                res.text = `o número ${num} foi adicionado`
-                resp.appendChild(res)
+                return false
             }
+        }
+
+        function inlista(n, l) {
+            if(l.indexOf(Number(n)) != -1) {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        function adicionar() {
+            
+            if(isnumero(inum.value) && !inlista(inum.value, valores)) {
+                valores.push(Number(inum.value))
+                let item = document.createElement('option')
+                item.text = `valor ${inum.value} adicionado `
+                resp.appendChild(item)
+                r.innerHTML = ''
+                
+            } else {
+                alert('valor ja encontrado ou inválido')
+        
+            }
+            inum.value = ''
+            inum.focus
+            
         
         }
- 
-        /* isso foi apenas um teste
-        function finalizar() {
-            var inum = document.getElementById('inum')
-            var resp = document.getElementById('res')
-            var r = document.getElementById('resposta')
-            var num = Number(inum.value)
-            let maiornum = 0
-                if(maiornum < num) {
-                    maiornum = num
-                }
 
-                r.innerHTML = `o maior numero foi ${maiornum}`
-        } */
+        function finalizar() {
+            if(valores.length == 0) {
+                alert('adicione valores antes de finalizar')
+            } else {
+                let tot = valores.length
+                let maior = valores [0]
+                let menor = valores [0]
+                let soma = 0
+                let media = 0
+                for(let pos in valores) {
+                    soma += valores [pos]
+                    media += valores [pos] / valores.length
+                    if(valores[pos] > maior) {
+                        maior = valores[pos]
+                    } if (valores[pos] < menor) {
+                        menor = valores[pos]
+                    }
+                }
+                r.innerHTML = ''
+                r.innerHTML += `<p> ao todo temos ${tot} números cadastrados </p>`
+                r.innerHTML += `<p> o maior valor encontrado foi ${maior} </p>`
+                r.innerHTML += `<p> o menor valor encontrado foi ${menor} </p> `
+                r.innerHTML += `<p> a soma dos numeros foi ${soma}</p>`
+                r.innerHTML += `<p> a média entre od números foi ${media} </p>`
+
+            }
+        }
+ 
         
+       
 
        
     </script>

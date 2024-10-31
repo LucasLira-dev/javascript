@@ -99,19 +99,20 @@
                 let media = 0
                 for(let pos in valores) {
                     soma += valores [pos]
-                    media += valores [pos] / valores.length
+                   
                     if(valores[pos] > maior) {
                         maior = valores[pos]
                     } if (valores[pos] < menor) {
                         menor = valores[pos]
                     }
+        media = soma / valores.length
                 }
                 r.innerHTML = ''
                 r.innerHTML += `<p> ao todo temos ${tot} números cadastrados </p>`
                 r.innerHTML += `<p> o maior valor encontrado foi ${maior} </p>`
                 r.innerHTML += `<p> o menor valor encontrado foi ${menor} </p> `
                 r.innerHTML += `<p> a soma dos numeros foi ${soma}</p>`
-                r.innerHTML += `<p> a média entre od números foi ${media} </p>`
+                r.innerHTML += `<p> a média entre os números foi ${media} </p>`
 
             }
         }

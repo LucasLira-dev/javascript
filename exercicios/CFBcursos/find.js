@@ -1,6 +1,6 @@
 const p_array = document.getElementById('array')
 const txtpesquisar = document.getElementById('txt_pesquisar')
-const btnpesquisar = document.getElementById("btnPesquisar")
+const btnpesquisar = document.getElementById('btnPesquisar')
 const resultado = document.getElementById('resultado') 
 
 const elementos_array= ["html","css", "javascript"]

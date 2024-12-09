@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio com heranças em objetos</title>
+</head>
+<body>
+    <div id="criarCarro" class="criarCarro">
+        <div class="campoForm">
+            <label for="f_nome"> nome </label>
+            <input type="text" name="f_nome" id="f_nome" value="">
+        </div>
+
+        <div class="campoForm">
+            <label for="f_portas"> portas </label>
+           <input type="number" name="f_portas" id="f_portas">
+        </div>
+
+        <div class="campoForm">
+            <label for="f_blindagem"> blindagem </label>
+           <input type="number" name="f_blindagem" id="f_blindagem" disabled value="0">
+        </div>
+
+        <div class="campoForm">
+            <label for="f_municao"> munição </label>
+           <input type="number" name="f_municao" id="f_municao" disabled value="0">
+        </div>
+
+        <div class="campoForm">
+            <label for="f_tipo"> tipo </label>
+           <div class="radio">
+           <input type="radio" name="f_tipo" id="f_tipoMilitar" value="m"> Militar
+           </div>
+
+           <div class="radio">
+            <input type="radio" name="f_tipo" id="f_tipoNormal" value="n" checked> Normal
+            </div>
+        </div>
+
+        <div class="campoForm">
+            <button id="btn_addCarro"> adicionar </button>
+        </div>
+
+    </div>
+
+    <div class="carros">
+
+    </div>
+
+
+    <script src="objHerancas.js"></script>
+    
+</body>
+</html>

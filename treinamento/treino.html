@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+    body{
+        width: 100vw;
+        height: 100vh;
+       transition: background-color 0.7s, color 0.3s;
+    }
+
+    body.white{
+        background-color: white;
+        color: black;
+    }
+
+    body.black{
+        background-color: black;
+        color: white;
+    }
+   </style>
+</head>
+<body>
+    <h1>oi</h1>
+
+    <button id="btn"> mudar cor </button>
+
+    <div id="texto">
+
+    </div>
+
+
+
+    <script>
+        const cor = document.getElementById("btn")
+        const b= document.body
+
+        cor.addEventListener("click", (evt)=>{
+             b.classList.toggle('black')
+
+             b.classList.toggle('white')
+
+             if(b.classList.contains('black')){
+            cor.style.background= 'yellow'
+            } else{
+            cor.style.background= 'red' 
+            }
+
+
+            const txt= document.getElementById("texto")
+        
+
+            const frutas= ["limao", "pera", "mamao"]
+
+            frutas.map((e)=>{
+            let p= document.createElement("p")
+            p= frutas[e]
+            txt.appendChild(p)
+            })
+           
+        })
+
+
+
+       
+       
+    </script>
+</body>
+</html>

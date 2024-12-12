@@ -27,7 +27,7 @@
 
     <button id="btn"> mudar cor </button>
 
-    <div id="texto">
+    <div id="frutas">
 
     </div>
 
@@ -49,18 +49,21 @@
             }
 
 
-            const txt= document.getElementById("texto")
         
 
-            const frutas= ["limao", "pera", "mamao"]
-
-            frutas.map((e)=>{
-            let p= document.createElement("p")
-            p= frutas[e]
-            txt.appendChild(p)
-            })
+            const frutas = ["Maçã", "Banana", "Laranja", "Manga", "Uva"]; 
+             const listaDeFrutas = document.getElementById("frutas"); 
+              for(let c= 0;c < frutas.length; c++) { 
+                const li = document.createElement("li"); 
+                li.textContent = frutas[c]; 
+                listaDeFrutas.appendChild(li); 
+            };
+            
            
         })
+
+  
+       
 
 
 

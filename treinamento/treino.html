@@ -31,11 +31,19 @@
 
     </div>
 
+    <div id="res"></div>
+
+    <div id="imagem">
+        ver imagem
+    </div>
+
 
 
     <script>
         const cor = document.getElementById("btn")
         const b= document.body
+        let res= document.getElementById("res")
+        let i= 0
 
         cor.addEventListener("click", (evt)=>{
              b.classList.toggle('black')
@@ -47,7 +55,8 @@
             } else{
             cor.style.background= 'red' 
             }
-
+             i++
+             res.innerText= `voce clicou no botão ${i} vezes`
 
         
 
@@ -57,11 +66,28 @@
                 const li = document.createElement("li"); 
                 li.textContent = frutas[c]; 
                 listaDeFrutas.appendChild(li); 
+               
             };
-            
+
+
+          
+        
            
         })
 
+
+    const imagem= document.getElementById("imagem")
+
+
+    imagem.addEventListener("click", (evt)=>{
+        const img= document.createElement("img")
+    img.setAttribute("src", "exemplo.jpg" )
+
+    imagem.appendChild(img)
+
+    })
+
+    
   
        
 

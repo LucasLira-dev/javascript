@@ -53,8 +53,7 @@ btn_promessa.addEventListener("click", (evt)=>{
         numero.innerHTML= retorno
         numero.classList.remove("ok")
         numero.classList.add("erro")
-    })
-    
+    }) 
 })
 
 

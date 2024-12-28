@@ -4,7 +4,7 @@ const btn= document.getElementById("btn")
 
 
 btn.addEventListener("click", ()=>{
-   const numSorteado= Math.random()*10
+   const numSorteado= Math.round(Math.random()*10)
    res.innerHTML= ""
 
    if(num.value=="" || num.value>10){

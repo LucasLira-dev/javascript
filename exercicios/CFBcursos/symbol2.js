@@ -31,3 +31,9 @@ s= s_jogadores.map((j)=>{
 
 console.log(jogadores)//retorna os jogadores com nome diferente de "j1"
 console.log(s) //retorna os ids dos jogadores com nome diferente de "j1"
+
+
+
+const msg= Symbol("olá")//cria um symbol com a descrição "olá"
+
+console.log(msg.description)//retorna a descrição do symbol

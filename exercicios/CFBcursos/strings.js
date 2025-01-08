@@ -38,3 +38,15 @@ console.log(nome.valueOf())//retorna o valor primitivo da string
 
 let num= 1
 console.log(typeof(num.toString()))// retorna o valor do tipo string
+
+console.log(nome.startsWith("mendes"))//retorna true se a string começa com "mendes"
+
+console.log(nome.endsWith("mendes"))//retorna true se a string termina com "mendes"
+
+console.log(nome.includes("luc"))//retorna true se a string contém "luc"    
+
+console.log(nome.repeat(3))//repete a string 3 vezes
+
+console.log(nome.charCodeAt(0))//retorna o valor unicode do caractere na posição 0
+
+console.log(String.fromCodePoint(99))//retorna o caractere unicode

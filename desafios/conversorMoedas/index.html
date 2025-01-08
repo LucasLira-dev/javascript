@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Conversor de moedas </title>
+    <style>
+
+        body{
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: gray;
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        form{
+           width: 300px;
+           display: block;
+           margin: auto;
+           padding-left: 80px
+        }
+
+        #moeda{
+            height: 30px;
+        }
+
+        label[for="moeda"]{
+            font-size: 25px;
+        }
+
+        input[type="radio"]{
+            width: 14px;
+            margin-top: 10px;
+        }
+
+        button{
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 80px;
+            height: 30px;
+        }
+
+        #converter{
+            background-color: rgb(93, 88, 88);
+            color: white;
+        }
+
+        #limpar{
+            background-color: red;
+        }
+
+        #res{
+            width: 300px;
+            height: 30px;
+            margin: auto;
+        }
+        
+
+      
+    </style>
+</head>
+<body>
+    <h1> Conversor de moedas </h1>
+
+    <form action="">
+      <label for="moeda"> R$ </label>  <input type="number" name="currency" id="moeda"> <br>
+
+      <input type="radio" name="currency" id="dolar"> 
+      <label for="dolar"> Dólar </label>
+
+      <input type="radio" name="currency" id="euro"> 
+      <label for="euro"> Euro </label>
+
+      <input type="radio" name="currency" id="libra"> 
+      <label for="dolar"> Libra </label> <br>
+
+
+      
+    </form>
+    
+    <div>
+    <button id="converter"> Converter</button>
+    <button id="limpar"> Limpar </button> </div>
+
+
+    <input type="text" name="res" id="res" placeholder="Digite o valor, escolha a moeda e converta">
+
+
+
+<script src="script.js"></script>
+</body>
+</html>

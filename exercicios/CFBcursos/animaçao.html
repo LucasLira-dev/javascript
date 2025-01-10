@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border: none;
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        .painel{
+            position: relative;
+            display: flex;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            background-color: #eee;
+        }
+
+        button{
+            width: 150px;
+            height: 30px;
+            border-radius: 10px;
+            margin: 10px;
+            background-color: #ccc;
+        }
+
+        .carro{
+            background-color: #f00;
+            width: 100px;
+            height: 40px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="painel" class="painel">
+        <button id="btn_parar"> PARAR </button>
+        <button id="btn_esquerda"> &lt;-</button>
+        <button id="btn_direita"> -&gt; </button>
+        <button id="btn_cima"> subir </button>
+        <button id="btn_descer"> descer</button>
+    </div>
+
+    <div id="carro" class="carro"></div>
+
+
+    <script src="animacao.js"></script>
+    
+</body>
+</html>

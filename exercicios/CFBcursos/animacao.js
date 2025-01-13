@@ -10,38 +10,89 @@ const init=()=>{
     carro.style.position= "relative"
     carro.style.left= "0"
     carro.style.bottom= "0"
+    carro.style.width= "100px"
+    carro.style.height= "40px"
+    tamMax= window.innerWidth-parseInt(carro.style.width)
+    alturaMax= window.innerHeight-parseInt(carro.style.height)
 }
 
 let anima=null
+let tamMax= null
+let alturaMax= null
+let tamCarro= null
+let dir= 0
 
 const move=(xdir, ydir)=>{
-    carro.style.left= parseInt(carro.style.left) + (10*xdir) +"px"
-    carro.style.bottom= parseInt(carro.style.bottom) + (10*ydir) +"px"
-}
+    if(xdir > 0){
+        if(parseInt(carro.style.left) <=tamMax){
+             carro.style.left= parseInt(carro.style.left) + (10*xdir) +"px"
+             anima= setTimeout(move,20,xdir)
+        } 
+        
+        else{
+            clearTimeout(anima)
+            move(-1)
+        }
+    }else if(xdir<0){
+        if(parseInt(carro.style.left) >=0){
+              carro.style.left= parseInt(carro.style.left) + (10*xdir) +"px"
+              anima= setTimeout(move,20,xdir)
+        } 
+        else{
+            clearTimeout(anima)
+            move(1)
+        }
+    }
 
+
+   
+    //carro.style.bottom= parseInt(carro.style.bottom) + (10*ydir) +"px"
+    //anima= setTimeout(move, 20, xdir, ydir)
+} 
 
 btn_parar.addEventListener("click", (evt)=>{
-    clearInterval(anima)
+    clearTimeout(anima)
 })
 
 btn_esquerda.addEventListener("click", (evt)=>{
-   clearInterval(anima)
-   anima= setInterval(move, 20, -1, 0)
+   clearTimeout(anima)
+   move(-1, 0)
 })
 
 btn_direita.addEventListener("click", (evt)=>{
-    clearInterval(anima)
-    anima= setInterval(move,20,1, 0)
+    clearTimeout(anima)
+    move(1, 0)
 })
 
 btn_descer.addEventListener("click", (evt)=>{
-    clearInterval(anima)
-    anima= setInterval(move, 20, 0, -1)
+    clearTimeout(anima)
+    move(0,-1)
 })
 
 btn_cima.addEventListener("click", (evt)=>{
-    clearInterval(anima)
-    anima= setInterval(move,20,0, 1)
+   clearTimeout(anima)
+   move(0, 1)
 })
 
 window.onload= init
+
+window.addEventListener("resize", ()=>{
+    tamMax= window.innerWidth-parseInt(carro.style.width)
+    alturaMax= window.innerHeight-parseInt(carro.style.height)
+})
+
+window.addEventListener("keydown", (evt)=>{
+    if(evt.code==="ArrowUp"){
+        carro.style.width= parseInt(carro.style.width)+10+"px"  
+        carro.style.height= parseInt(carro.style.height)+10+"px"  
+     }
+
+     if(evt.code==="ArrowDown"){
+        carro.style.width= parseInt(carro.style.width)-10+"px"  
+        carro.style.height= parseInt(carro.style.height)-10+"px"  
+     }
+
+     tamCarro= parseInt(carro.style.width)
+     tamMax=window.innerWidth-tamCarro
+
+})

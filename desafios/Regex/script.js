@@ -1,3 +1,5 @@
-const nomes="joao, lucas, carlos, julio, jota 1000"
+const { texto } = require('./base');
 
-console.log(nomes.match(/\bj/ig))
+const regExp1= /lucas/ig;
+
+console.log(regExp1.test(texto))

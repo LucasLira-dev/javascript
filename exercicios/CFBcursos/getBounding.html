@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        *{
+            border: none;
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        #info{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+
+        #q1{
+            background-color: red;
+            top: 20px;
+            left: 200px;
+            width: 200px;
+        }
+
+
+        #q2{
+            background-color: blue;
+            top: 200px;
+            left: 300px;
+        }
+
+        .quadrado{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="info" class="info">
+        <p id="posx"> posx </p>
+        <p id="posy"> posy </p>
+        <p id="largura"> largura </p>
+        <p id="altura"> altura </p>
+    </div>
+
+    <div id="q1" class="quadrado"></div>
+    <div id="q2" class="quadrado"></div>
+
+    <script src="getBounding.js"></script>
+</body>
+</html>

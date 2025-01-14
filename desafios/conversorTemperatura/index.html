@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>CONVERSOR DE TEMPERARURA </h1>
+
+    <P>seu melhor conversor de temperaturas na web</P>
+
+    <button id="btn_zerar"> ZERAR </button>
+
+    <div class="conteiner"> 
+
+        <div class="temps">
+            <label for="celsius"> celsius </label> 
+            <input type="number" name="n_celsius" id="n_celsius" value="0" disabled> *C <br>
+
+            <span id="Cmin"> -273.00 </span>
+            <input type="range" name="r_celsius" id="r_celsius" min="-273" max="100" value="0">
+            <span id="Cmax"> 100.00 </span>
+        </div>
+
+        <div class="temps">
+            <label for="fahrenheit"> fahrenheit</label>
+            <input type="number" name="n_fahrenheit" id="n_fahrenheit" value="0" disabled> *F <br>
+
+            <span id="Fmin"> -459.40 </span>
+            <input type="range" name="r_fahrenheit" id="r_fahrenheit" min="-459" max="212" value="0">
+            <span id="Fmax"> 212.00</span>
+        </div>
+
+        <div class="temps">
+            <label for="kelvin"> Kelvin </label>
+            <input type="number" name="n_kelvin" id="n_kelvin" value="0" disabled> K <br>
+
+            <span id="Nmin"> 0.00 </span>
+            <input type="range" name="r_kelvin" id="r_kelvin" min="0" max="373" value="0">
+            <span id="Nmax"> 373.00</span>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+    
+</body>
+</html>

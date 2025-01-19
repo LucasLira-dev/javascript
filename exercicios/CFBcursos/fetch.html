@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #p_texto{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            flex-basis: 300px;
+           
+        }
+
+        div{
+            background-color: blueviolet;
+            border: 2px solid salmon;
+            margin: 20px;
+            padding: 10px;
+            text-align: center;
+           
+        }
+
+        img{
+            width: 200px;
+        }
+
+        @media screen and (min-width: 800px){
+        
+            main{
+                width: 1200px;
+                margin: auto;
+            }
+
+            #p_texto { 
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                flex-wrap: wrap;
+                border: 2px solid sienna;
+                background-color: aqua; 
+                margin: auto; }
+
+            div{
+               
+                width: 400px;
+                height: 400px;
+            }
+
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+
+    <p id="p_texto"></p>
+    <button id="btn_texto"> Fetch </button>
+
+    </main>
+    
+    <script src="fetch.js"></script>
+</body>
+</html>

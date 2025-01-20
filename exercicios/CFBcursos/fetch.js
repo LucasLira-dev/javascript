@@ -39,3 +39,32 @@ fetch(endpoint)
 
   
 
+const btn_enviarDados= document.getElementById("btn_enviarDados")
+let dados={
+  nome: "lucas", 
+  canal: "cfb cursos",
+  curso: "javascript"
+}
+
+let cabecalho={
+  method: "POST",
+  headers: { 
+    "Content-Type": "application/json",
+   },
+  body: JSON.stringify(dados)
+}
+
+
+const gerarDados=()=>{
+  const endpoint= "https://dummyjson.com/products"
+  fetch(endpoint, cabecalho)
+  .then(res => res.json())
+  .then(ret =>{
+    console.log(ret)
+  }
+  )
+}
+
+btn_enviarDados.addEventListener("click", (evt)=>{
+  gerarDados()
+})

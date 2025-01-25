@@ -5,6 +5,9 @@ const timer = document.getElementById("timer");
 const btn_iniciar = document.getElementById("btn_iniciar");
 const btn_parar = document.getElementById("btn_parar");
 const btn_zerar = document.getElementById("btn_zerar");
+const btn_parcial= document.getElementById("btn_parcial");
+
+const parciaisregistradas= document.getElementById("parciaisregistradas")
 
 // Variáveis para armazenar o tempo inicial e o intervalo do cronômetro
 let tmpini = null;
@@ -62,7 +65,17 @@ btn_zerar.addEventListener("click", () => {
     timer.innerHTML = "00:00:00";
     // Limpa o intervalo, parando o cronômetro
     clearInterval(intervalo);
+
+    parciaisregistradas.innerHTML= ""
 });
+
+btn_parcial.addEventListener("click", (evt)=>{
+    let parcial= timer.innerHTML
+    let div= document.createElement("div")
+    div.setAttribute("class", "divParcial")
+    parciaisregistradas.innerHTML+= parcial
+    parciaisregistradas.appendChild(div)
+})
 
 
 

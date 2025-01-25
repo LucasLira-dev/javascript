@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+
+        main{
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            width: 100%;
+        }
+
         #timer{
             width: 300px;
             margin: auto;
@@ -21,41 +29,77 @@
            gap: 10px;
            margin-top: 10px;
         }
+
+        button{
+            height: 25px;
+            width: 65px;
+        }
  
         #btn_zerar{
-            height: 25px;
-            width: 80px;
+            
             background-color: greenyellow;
             color: red;
             border: 3px solid yellowgreen;
         }
 
         #btn_parar{
-            height: 25px;
-            width: 80px;
+           
             background-color: red;
             color: white;
             border: 3px solid rgb(255, 170, 0);
         }
 
         #btn_iniciar{
-            height: 25px;
-            width: 80px;
+          
             background-color: green;
             color: white;
             border: 3px solid rgb(255, 170, 0); 
         }
 
+        #btn_parcial{
+            
+            background-color: lightblue;
+            color: green;
+            border: 3px solid blueviolet; 
+        }
+
+        .parciais{
+            background-color: rgba(128, 128, 128, 0.174);
+            width: 130px;
+            text-align: center;
+            border: 2px solid black;
+        }
+
+        .divParcial{
+           
+           margin-bottom: 10px;
+        }
+
+
     </style>
 </head>
 <body>
+
+    <main>
+    
+    <div id="divTimer">
     <div id="timer"> 00:00:00 </div>
 
     <div class="botoes">
         <button id="btn_iniciar"> INICIAR </button>
         <button id="btn_parar"> PARAR </button>
         <button id="btn_zerar"> ZERAR </button>
+       <button id="btn_parcial"> PARCIAL </button>
     </div>
+
+    </div>
+
+    <div id="parciais" class="parciais">
+        <h2> Parciais </h2>
+        <div id="parciaisregistradas" class="parciaisregistradas"></div>
+    </div>
+
+    </main>
 
     <script src="cronometro.js"></script>
 </body>

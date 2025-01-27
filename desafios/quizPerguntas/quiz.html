@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> quiz de perguntas </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #pergunta {
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+
+        #alternativas {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .resp{
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #f0f0f0;
+            color: #333;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;    
+        }
+
+        .respAcerto{
+            background-color: green;
+            color: #e0e0e0;
+        }
+
+        .respErro{
+            background-color: red;
+        }
+
+   
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+        
+    </style>
+</head>
+<body>
+    <h1> quiz de perguntas </h1>
+    <p id="acertos"> </p>
+
+    <div id="pergunta"></div>
+    <div id="alternativas"></div>
+
+    <button id="proxima"> Próxima pergunta </button>
+
+
+    <script src="quiz.js"></script>
+</body>
+</html>

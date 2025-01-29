@@ -1,19 +1,21 @@
 class Cxmsg{
-    titulo= null
-    texto= null
-    cor= null
-    destino= null
-    divmsg= null
+    static cor= "888"
+    static destino= null
+    static divmsg= null
+    static tipo= null
+    static comando_sn= null
+    static textos= []
+   
 
-    constructor(config){
-        this.titulo= config.titulo
-        this.texto= config.texto
+    static mostrar=(config, titulo, texto)=>{
         this.cor= config.cor
+        this.tipo= config.tipo
+        this.textos= config.textos
+        this.comando_sn= ()=>{ config.comando_sn()}
         this.destino= document.body
-       
-    }
+        this.titulo= titulo
+        this.texto= texto
 
-    mostrar=()=>{
        this.divmsg= document.createElement('div')
 
        const estilo_divmsg= //estilo da divmsg
@@ -64,10 +66,79 @@ class Cxmsg{
         tituloCxmsg.innerHTML= this.titulo//seta o tituloCxmsg
 
         areaCaixamsg.appendChild(tituloCxmsg)//adiciona o tituloCxmsg na areaCaixamsg
+
+        const estilo_corpoCxmsg= 
+              'display: flex;' +
+              'justify-content: flex-start;' +
+              'align-items: flex-start;' +
+              'color: #000;' +
+              'width: 100%;' +
+              'background-color: #eee;' +
+              'padding: 30px 5px;'
+
+        const corpoCxmsg= document.createElement('div')
+        corpoCxmsg.setAttribute("style", estilo_corpoCxmsg)
+        corpoCxmsg.innerHTML= this.texto
+        areaCaixamsg.appendChild(corpoCxmsg)
+
+
+        const estilo_rodapeCxmsg=
+                'display: flex;' +
+                'justify-content: space-around;' +
+                'align-items: center;' +
+                'width: 100%;' +
+                'background-color: #ccc;' +
+                'color: #000;' +
+                'padding: 5px;' +
+                'border-radius: 0px 0px 5px 5px;'
+
+        const rodapeCxmsg= document.createElement('div')
+        rodapeCxmsg.setAttribute("style", estilo_rodapeCxmsg)
+        areaCaixamsg.appendChild(rodapeCxmsg)
+
+
+        const estilo_botaoCxmsg=
+                'text-transform: uppercase;' +
+                'padding: 10px 50px;' +
+                'background-color: '+this.cor+';' +
+                'color: #fff;' +
+                'cursor: pointer;' +
+                'border-radius: 5px;'
+
+        if(this.tipo=="Ok"){
+            const btn_ok= document.createElement('button')
+            btn_ok.innerHTML= 'ok'
+            btn_ok.setAttribute('style', estilo_botaoCxmsg)
+            btn_ok.addEventListener('click', ()=>{
+                this.ocultar()
+            })
+            rodapeCxmsg.appendChild(btn_ok)
+        } 
+        else if(this.tipo=="sn"){
+            const btn_sim= document.createElement('button')
+            btn_sim.innerHTML= this.textos[0]
+            btn_sim.setAttribute('style', estilo_botaoCxmsg)
+            btn_sim.addEventListener('click', ()=>{
+                this.comando_sn()
+                this.ocultar()
+            })
+            rodapeCxmsg.appendChild(btn_sim)
+
+            const btn_nao= document.createElement('button')
+            btn_nao.innerHTML= this.textos[1]
+            btn_nao.setAttribute('style', estilo_botaoCxmsg)
+            btn_nao.addEventListener('click', ()=>{
+             
+                this.ocultar()
+            })
+            rodapeCxmsg.appendChild(btn_nao)
+        }
     }
 
 
-    ocultar=()=>{
-
+    static ocultar=()=>{
+        this.divmsg.remove()
     }
 }
+
+export {Cxmsg}

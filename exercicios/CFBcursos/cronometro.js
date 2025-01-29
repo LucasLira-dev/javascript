@@ -1,3 +1,13 @@
+import {Cxmsg} from './/CaixadeMsg/cxmsg.js'
+
+const config={
+  
+    cor: "#48f"
+}
+
+ Cxmsg.config(config)
+
+
 // Seleciona o elemento do cronômetro pelo ID "timer"
 const timer = document.getElementById("timer");
 
@@ -67,6 +77,8 @@ btn_zerar.addEventListener("click", () => {
     clearInterval(intervalo);
 
     parciaisregistradas.innerHTML= ""
+
+    Cxmsg.mostrar(config, "Cronômetro zerado", "O cronômetro foi zerado com sucesso!")
 });
 
 btn_parcial.addEventListener("click", (evt)=>{

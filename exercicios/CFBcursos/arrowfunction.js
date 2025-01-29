@@ -5,7 +5,7 @@ const nome=n=>{return n}
 console.log(nome("lucas"))
 
 const add=n=> n+10
-console.log(add(10))
+console.log(add(10)) 
 
 
 let valor=(...valores)=>{

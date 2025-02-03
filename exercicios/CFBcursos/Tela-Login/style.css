@@ -1,0 +1,88 @@
+
+/*
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.fundoLogin{
+    background-color: rgba(0,0,0, 0.75);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    box-sizing: border-box;
+}
+
+.baseLogin{
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 50%;
+}
+
+.elementosLogin{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px;
+    width: 50%;
+    border-radius: 10px 0px 0px 10px;
+    background-color: #eee;
+}
+
+.logoLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.logoLogin img{
+    width: 90%;
+   
+}
+
+.campoLogin{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.campoLogin label{
+   font-size: 18px;
+}
+
+.campoLogin input{
+    padding: 5px;
+    background-color: #eee;
+    border-radius: 5px;
+    width: 90%;
+}
+
+.botoeslogin{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.botoesLogin button{
+    cursor: pointer;
+    background-color: #008;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100px;
+}  */

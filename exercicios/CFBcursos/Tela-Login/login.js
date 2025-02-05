@@ -5,6 +5,8 @@ class Login{
     static nomelogado= null;
     static acessologado= null;
     static estiloCss= null;
+    static callback_ok= null;
+    static calback_naook= null;
     static endpoint= "http://localhost:8000" ;
     static config={
         cor: "#008",
@@ -12,11 +14,17 @@ class Login{
     }
     
 
-    static login=(config=null)=>{
+    static login=(callback_ok, callback_naook, config=null)=>{
         if(config!=null){
             this.config= config;
         }
     
+        this.callback_ok= ()=>{callback_ok()}; // função a ser executada se o login for válido
+        this.callback_naook= ()=>{callback_naook()}// função a ser executada se o login não for válido
+
+
+
+
 
         this.estiloCss=  `*{
             margin: 0;
@@ -215,13 +223,15 @@ class Login{
                 this.matlogado= mat;
                 this.nomelogado= res.nome;
                 this.acessologado= res.acesso;
+                this.callback_ok();
                 this.fechar();
             } else{
                 this.logado= false;
                 this.matlogado= null;
                 this.nomelogado= null;
                 this.acessologado= null;
-                alert("Credenciais inválidas");
+                this.callback_naook();
+               
            } 
         })
 
@@ -235,7 +245,7 @@ class Login{
 
 }
 
-export {Login}
+//export {Login}
 
 
 

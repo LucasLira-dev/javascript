@@ -27,7 +27,8 @@ class Cxmsg{
          'left: 0;' +
          'width: 100%;' +
          'height: 100vh;' +
-         'background-color: rgba(0, 0, 0, 0.7);'  
+         'background-color: rgba(0, 0, 0, 0.7);'+
+         'z-index: 1000;'  
         this.divmsg.setAttribute('id', 'divmsg')
         this.divmsg.setAttribute('style', estilo_divmsg)//seta o estilo da divmsg
         this.destino.prepend(this.divmsg)//prepend adiciona o elemento no inicio do body
@@ -111,6 +112,7 @@ class Cxmsg{
             btn_ok.setAttribute('style', estilo_botaoCxmsg)
             btn_ok.addEventListener('click', ()=>{
                 this.ocultar()
+                this.comando_sn()
             })
             rodapeCxmsg.appendChild(btn_ok)
         } 

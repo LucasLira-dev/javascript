@@ -1,0 +1,36 @@
+[
+  {
+      "id": "01",
+      "produto": "Processador",
+      "marca": "Intel",
+      "modelo": "i7"
+  },
+
+  {
+      "id": "02",
+      "produto": "Placa de Vídeo",
+      "marca": "Nvidia",
+      "modelo": "GTX 1080"
+  },
+
+  {
+      "id": "03",
+      "produto": "Memória RAM",
+      "marca": "Corsair",
+      "modelo": "Vengeance LPX"
+  },
+
+  {
+      "id": "04",
+      "produto": "Placa Mãe",
+      "marca": "Asus",
+      "modelo": "ROG Strix"
+  },
+
+  {
+      "id": "05",
+      "produto": "Drone",
+      "marca": "DJI",
+      "modelo": "Mavic Pro"
+  }
+]

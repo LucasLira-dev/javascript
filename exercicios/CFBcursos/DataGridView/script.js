@@ -12,6 +12,9 @@ const datagridview=(configDgv)=>{
     .then(res => res.json())
     .then(res => {
 
+        const btn_ok= document.getElementById("btn_ok");
+
+
        res.forEach(el=>{
         const dgvLinha= document.createElement("div"); 
         dgvLinha.setAttribute("class", "dgvLinha");
@@ -58,6 +61,25 @@ const datagridview=(configDgv)=>{
         imgView.setAttribute("src", "visualizar.svg");
         imgView.setAttribute("class", "dgvIcons");
         c5.appendChild(imgView);
+        imgView.addEventListener("click", ()=>{
+            
+            document.querySelector(".janelaView").classList.remove("ocultar"); //exibe a janelaView
+          
+
+            const f_id= document.getElementById("f_Id");
+            const f_produto= document.getElementById("f_produto");
+            const f_marca= document.getElementById("f_marca");
+            const f_modelo= document.getElementById("f_modelo");
+
+            f_id.value= el.id;
+            f_produto.value= el.produto;
+            f_marca.value= el.marca;
+            f_modelo.value= el.modelo; //preenche os campos do formulario com os dados do 
+            
+            btn_ok.addEventListener("click", ()=>{
+                document.querySelector(".janelaView").classList.add("ocultar"); //fecha a janelaView
+            })
+        }) 
      
 
         dgvDados.appendChild(dgvLinha);

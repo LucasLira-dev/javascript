@@ -1,0 +1,104 @@
+*{  
+    border: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.cabecalho{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.menu{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+   
+}
+
+.principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+    width: 100%;
+    height: 100vh;
+}
+
+.aba{
+    background-color: #248;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px 10px 0px 0px;
+    margin-right: 1px;
+}
+
+.abaSelecionada{
+    background-color: #ddd !important;
+}
+
+.if_principal{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+.btn_geral{
+    background-color: #248;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+
+/* CSS DA JANELA "novo" */
+
+#novo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.elementosForm{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 80%;
+    border: 2px solid #000;
+    margin-top: 20px;
+}
+
+.botoesForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.campoForm{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 10px;
+ 
+}
+
+.campoForm input{
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+/* FIM DA JANELA "novo" */

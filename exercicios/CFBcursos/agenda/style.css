@@ -102,3 +102,15 @@
 }
 
 /* FIM DA JANELA "novo" */
+
+
+/* CSS DA JANELA "pesquisar" */
+
+#pesquisa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+}
+
+/* FIM DA JANELA "pesquisar" */

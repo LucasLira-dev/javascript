@@ -4,8 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1> pesquisar ></h1>
+    <div id="pesquisa">
+        <div class="campoPesq">
+            <label for="f_pesq"> ID </label>
+            <input type="radio" name="f_pesq"  value="id">
+        </div>
+
+        <div class="campoPesq">
+            <label for="f_pesq"> Nome </label>
+            <input type="radio" name="f_pesq"  value="nome" checked>
+        </div>
+
+        <div class="campoPesq">
+            <label for="f_pesq"> Data De Nascimento </label>
+            <input type="radio" name="f_pesq"  value="nasc">
+        </div>
+
+        <div class="campoPesq">
+            <label for="f_pesq"> Email </label>
+            <input type="radio" name="f_pesq"  value="email">
+        </div>
+
+        <div class="campoPesq">
+            <label for="f_pesq"> Pesquisar </label>
+            <input type="text" name="txt_pesq" id="txt_pesq">
+        </div>
+
+        <div class="campoPesq">
+            <button id="btn_pesq"> Pesquisar </button>
+        </div>
+
+        
+    </div>
+
+    <div id="resultado">
+
+    </div>
 </body>
 </html>

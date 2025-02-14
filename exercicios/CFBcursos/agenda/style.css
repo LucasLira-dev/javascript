@@ -108,9 +108,51 @@
 
 #pesquisa{
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    margin: 10px;
+}
+
+.campoPesq{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+ 
+}
+
+input[type="text"]{
+  
+    padding: 5px;
+    border-radius: 10px;
+}
+
+label{
+    margin-right: 5px;
+}
+
+#resultado{
+    display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; 
+    flex-direction: row;
+    width: 100%;
+    margin: 10px;
+    background-color: #248;
+}
+
+#resultado .containerDiv{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    background-color: #ddd;
+    border-radius: 10px;
 }
 
 /* FIM DA JANELA "pesquisar" */

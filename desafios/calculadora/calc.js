@@ -28,17 +28,17 @@ let decimal= false
 teclasNum.forEach((el)=>{
     el.addEventListener("click", (evt)=>{
         sinal= false
-        if(evt.target.innerHTML==="."){
+        if(evt.target.innerText==="."){
             if(!decimal){
                 decimal= true
-                if(display.innerHTML== "0"){
+                if(display.innerText== "0"){
                     display.innerHTML= "0."
                 }else{
-                    display.innerHTML+=evt.target.innerHTML
+                    display.innerText+=evt.target.innerText
                 }
             }
          } else{
-                if(display.innerHTML=="0"){
+                if(display.innerText=="0"){
                     display.innerHTML= ""
                 }
                 display.innerHTML+=evt.target.innerHTML       
@@ -53,7 +53,7 @@ teclasOp.forEach((el)=>{
             if(display.innerHTML=="0"){
                 display.innerHTML=""
             }
-            if(evt.target.innerHTML=="x"){
+            if(evt.target.innerText=="x"){
                 display.innerHTML+="*"
            } else{
            display.innerHTML+=evt.target.innerHTML
@@ -71,7 +71,7 @@ tlimpar.addEventListener("click", (evt)=>{
 tigual.addEventListener("click", (evt)=>{
     sinal= false
     decimal= false
-    const res= eval(display.innerHTML)
+    const res= eval(display.innerText)
     display.innerHTML= res
 }) 
 
@@ -90,3 +90,5 @@ calc_aba.addEventListener("click", (evt)=>{
         img.setAttribute("src", "setaDireita.svg") 
     }
 })  
+
+    

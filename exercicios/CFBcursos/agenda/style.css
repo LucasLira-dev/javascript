@@ -133,26 +133,78 @@ label{
     margin-right: 5px;
 }
 
-#resultado{
+#dgv{
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: row;
+    align-items: flex-start;
     width: 100%;
-    margin: 10px;
-    background-color: #248;
+   
 }
 
-#resultado .containerDiv{
+#resultado{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-direction: column;
+    width: 800px;
+}
+
+.titulos{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
     width: 100%;
-    padding: 10px;
-    margin: 5px;
+    background-color: #248;
+    color: #fff;
+    
+}
+
+.titulo{
+    border-right: 1px solid #ddd;
+    padding: 5px;
+}
+
+#dados{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 100%;
+}
+
+.linhadados{
+
+     display: flex;
+     justify-content: flex-start;
+     align-items: flex-start;
+     flex-direction: row;
+    width: 100%;
     background-color: #ddd;
-    border-radius: 10px;
+}
+
+.coluna{
+    padding: 5px;
+}
+
+.c1{
+    width: 10%;
+}
+
+.c2{
+    width: 40%;
+}
+
+.c3{
+    width: 20%;
+}
+
+.c4{
+    width: 20%;
+}
+
+.c5{
+    width: 10%;
 }
 
 /* FIM DA JANELA "pesquisar" */

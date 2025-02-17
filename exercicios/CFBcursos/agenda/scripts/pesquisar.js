@@ -19,45 +19,55 @@ btn_pesq.addEventListener("click", (evt)=>{
     .then(res=>{
         console.log(res);
 
-        const resultado= document.getElementById('resultado');
+        const dados= document.getElementById('dados');
 
-        resultado.innerHTML= "";
+        dados.innerHTML= "";
 
         if(res.length==0){
             const DivErro= document.createElement('div');
             DivErro.classList.add('containerDiv');
             DivErro.innerHTML= "Nenhum registro encontrado";
-            resultado.appendChild(DivErro);
+            DivErro.style.display= "flex";
+            DivErro.style.justifyContent= "center";
+            DivErro.style.alignItems= "center";
+            dados.appendChild(DivErro);
 
-            console.log("Nenhum registro encontrado");
             return;
         } else{
 
-            res.forEach((res)=>{
 
-        
-                const containerDiv= document.createElement('div');
-                containerDiv.classList.add('containerDiv');
+            res.forEach((el)=>{
+            
+                const linha= document.createElement('div');
+                linha.setAttribute('class', 'linhadados');
 
-                const divId= document.createElement('div');
-                divId.innerHTML= `Id: ${res.n_contato_contato}`
+                const c1= document.createElement('div');
+                c1.setAttribute('class', 'coluna c1');
+                c1.innerHTML= el.n_contato_contato;
+                linha.appendChild(c1);
+
+                const c2= document.createElement('div');
+                c2.setAttribute('class', 'coluna c2');
+                c2.innerHTML= el.s_nome_contato
                 ;
-                containerDiv.appendChild(divId);
-            
-                const divNome= document.createElement('div');
-                divNome.innerHTML= `Nome: ${res.s_nome_contato}`;
-                containerDiv.appendChild(divNome); 
+                linha.appendChild(c2);
 
-                const dataNasc= document.createElement('div');
-                dataNasc.innerHTML= ` Data de nascimento: ${res.dt_dtnasc_contato}`;
-                containerDiv.appendChild(dataNasc);
-            
-                const divEmail= document.createElement('div');
-                divEmail.innerHTML= `Email: ${res.s_email_contato}`;
-             containerDiv.appendChild(divEmail);
+                const c3= document.createElement('div');
+                c3.setAttribute('class', 'coluna c3');
+                c3.innerHTML= el.s_celular_contato;
+                linha.appendChild(c3);
 
+                const c4= document.createElement('div');
+                c4.setAttribute('class', 'coluna c4');
+                c4.innerHTML= el.s_email_contato;
+                linha.appendChild(c4);
 
-            resultado.appendChild(containerDiv);
+                const c5= document.createElement('div');
+                c5.setAttribute('class', 'coluna c5');
+                c5.innerHTML= el.dt_dtnasc_contato; 
+                linha.appendChild(c5);
+               
+                dados.appendChild(linha);
         })
     } 
     })

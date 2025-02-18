@@ -1,6 +1,6 @@
 const p_array = document.getElementById('array')
 const txtpesquisar = document.getElementById('txt_pesquisar')
-const btnpesquisar = document.getElementById('btnPesquisar')
+const btnpesquisar = document.getElementById('btn_pesquisar')
 const resultado = document.getElementById('resultado') 
 
 const elementos_array= ["html","css", "javascript"]
@@ -14,6 +14,6 @@ btnpesquisar.addEventListener("click", (evt)=>{
             resultado.innerHTML= `valor pesquisado encontrado: ${e} na posição ${i+1}`
             return e
         } 
-    })
+    }) // o metodo find retorna o primeiro valor que encontrar no array
     
 })

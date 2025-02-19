@@ -5,6 +5,14 @@
     box-sizing: border-box;
 }
 
+/* classes auxiliares */
+
+.ocultar{
+    display: none !important;
+}
+
+/* *********************** */
+
 .cabecalho{
     display: flex;
     justify-content: center;
@@ -230,4 +238,61 @@ label{
 .iconeop{
     width: 40%;
     cursor: pointer;
+}
+
+/* POPUP */
+
+.fundopopup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.75);
+    z-index: 1000;
+    margin-top: 5px;
+}
+
+.janelapopup{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 500px;
+    box-shadow: 0px 0px 10px #000;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.titulopopup{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #248;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px 5px 0px 0px;
+    width: inherit;
+}
+
+.principalpopup{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: inherit;
+    background-color: #ddd;
+    padding: 5px;
+}
+
+.rodapepopup{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: inherit;
+    background-color: #aaa;
+    border-radius: 0px 0px 5px 5px;
 }

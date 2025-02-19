@@ -1,4 +1,31 @@
+const fundopopup= document.getElementById('fundopopup'); 
+const btn_gravar= document.getElementById('btn_gravar'); 
+const btn_cancelar= document.getElementById('btn_cancelar');
 
+const f_id= document.getElementById('f_id'); 
+const f_nome= document.getElementById('f_nome');
+const f_celular= document.getElementById('f_celular');
+const f_email= document.getElementById('f_email');
+const f_dtnasc= document.getElementById('f_dtnasc');
+
+btn_gravar.addEventListener('click', ()=>{ 
+    fundopopup.classList.add("ocultar");
+
+    const endpoint= `http://127.0.0.1:1880/atualizarcontatos/${f_id.value}/${f_nome.value}/${f_celular.value}/${f_email.value}/${f_dtnasc.value}`; // cria a URL de pesquisa
+    fetch(endpoint)
+    .then(res=>{
+        if(res.status==200){ 
+            alert('Contato atualizado com sucesso');
+            preencherdgv();
+          }else{
+            alert('Erro ao atualizar contato');
+          }
+    })
+})// adiciona o evento de click no botão gravar
+
+btn_cancelar.addEventListener('click', ()=>{
+    fundopopup.classList.add("ocultar");
+})
 const preencherdgv=()=>{
 
     
@@ -67,6 +94,18 @@ const preencherdgv=()=>{
                 const imgeditar= document.createElement('img');
                 imgeditar.setAttribute('src', '../scripts/edit.svg');
                 imgeditar.setAttribute('class', 'iconeop')
+                imgeditar.addEventListener('click', (evt)=>{
+                    fundopopup.classList.remove("ocultar")
+                    const dados= evt.target.parentNode.parentNode.childNodes
+                    console.log(dados);
+
+                    f_id.value= dados[0].innerHTML;
+                    f_nome.value=  dados[1].innerHTML;
+                    f_celular.value= dados[2].innerHTML;
+                    f_email.value= dados[3].innerHTML;
+                    f_dtnasc.value= dados[4].innerHTML;
+
+                }); // adicionar evento de edição
                 c6.appendChild(imgdelete);
                 c6.appendChild(imgeditar);
                 linha.appendChild(c6);

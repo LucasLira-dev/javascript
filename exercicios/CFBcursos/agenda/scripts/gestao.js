@@ -12,6 +12,7 @@ btn_gravar.addEventListener('click', ()=>{
     fundopopup.classList.add("ocultar");
 
     const endpoint= `http://127.0.0.1:1880/atualizarcontatos/${f_id.value}/${f_nome.value}/${f_celular.value}/${f_email.value}/${f_dtnasc.value}`; // cria a URL de pesquisa
+    console.log(endpoint);
     fetch(endpoint)
     .then(res=>{
         if(res.status==200){ 
@@ -30,10 +31,11 @@ const preencherdgv=()=>{
 
     
 
-    const endpoint= `http://127.0.0.1:1880/pesquisartodoscontatos/`; // cria a URL de pesquisa
+    const endpoint= "../gestao.php"; // cria a URL de pesquisa
     fetch(endpoint)
     .then(res=>res.json())
     .then(res=>{
+        console.log(res);
         const dados= document.getElementById('dados');
 
         dados.innerHTML= "";
@@ -103,7 +105,7 @@ const preencherdgv=()=>{
                     f_nome.value=  dados[1].innerHTML;
                     f_celular.value= dados[2].innerHTML;
                     f_email.value= dados[3].innerHTML;
-                    f_dtnasc.value= dados[4].innerHTML;
+                    f_dtnasc.value= dados[4].innerHTML.split("T")[0];
 
                 }); // adicionar evento de edição
                 c6.appendChild(imgdelete);

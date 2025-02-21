@@ -10,7 +10,9 @@ const computador={
             RAM: ${this.ram} 
             HD: ${this.hd}`)
     }
-}
+} 
+
+
 
 computador.placaVideo= "RTX 3090";
 
@@ -65,3 +67,21 @@ computadores.forEach((c)=>{
     `
     objeto.appendChild(div)
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

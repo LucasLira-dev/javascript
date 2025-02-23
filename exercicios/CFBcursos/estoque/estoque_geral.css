@@ -1,0 +1,47 @@
+.menuPrincipal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 240px;
+    height: 100vh;
+    
+}
+
+.ocultar{
+    left: -210px !important;
+}
+
+
+.menuItens{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ccc;
+    height: 100vh;
+}
+
+.btn_menuPrincipal{
+    cursor: pointer;
+    width: 30px;
+    
+}
+
+.btn_menuPrincipal img{
+    width: inherit;
+}
+
+.btn_menuItem{
+    cursor: pointer;
+    padding: 5px 15px;
+    margin: 5px;
+    width: 200px;
+    background-color: #888;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+ 
+}

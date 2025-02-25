@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 .menuPrincipal{
     position: absolute;
     top: 0;
@@ -11,7 +16,7 @@
 }
 
 .ocultar{
-    left: -210px !important;
+    left: -190px !important;
 }
 
 
@@ -22,26 +27,76 @@
     flex-direction: column;
     background-color: #ccc;
     height: 100vh;
+   
 }
 
 .btn_menuPrincipal{
     cursor: pointer;
     width: 30px;
-    
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+
 }
 
 .btn_menuPrincipal img{
     width: inherit;
+    
 }
 
 .btn_menuItem{
     cursor: pointer;
     padding: 5px 15px;
     margin: 5px;
-    width: 200px;
+    width: 150px;
     background-color: #888;
     color: #fff;
     text-align: center;
     border-radius: 5px;
- 
+    text-decoration: none;
 }
+
+
+
+/* Grids */
+
+.grid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tituloGrid{
+    background-color: #248;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.colunaTituloGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dadosGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.linhaGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.colunaLinhaGrid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* */

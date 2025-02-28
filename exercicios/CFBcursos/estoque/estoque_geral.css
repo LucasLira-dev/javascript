@@ -159,6 +159,8 @@ body{
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.75);
+    opacity: 1;
+    transition: all 0.3s;
 }
 
 .janelaPopup{
@@ -233,5 +235,52 @@ body{
     padding: 5px;
     margin: 5px;
     box-sizing: border-box;
+    background-color: #fff;
+}
+
+.campoForm div{
+    padding: 5px;
+    margin: 5px;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.ocultarPopup{
+   opacity: 0 !important;
+   z-index: -1 !important;
+   transition: all 0.3s;
+}
+
+/* */
+
+.telefones{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.tel{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+
+}
+
+.numTel{
+    background-color: #888 !important;
+    border: 5px;
+    border-radius: 5px 0px 0px 5px !important;
+    width: 130px !important;
+}
+
+.delTel{
+    background-color: #f88 !important;
+    border: 5px;
+    border-radius: 0px 5px 0px 0px !important;
+    width: 28px !important;
+    cursor: pointer;
 }
 /* */

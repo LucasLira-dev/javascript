@@ -13,11 +13,11 @@
         <div></div>
         <div> Colaboradores </div>
         <div>
-              <img src="../../imgs/adicionar.svg" class="btn_mainoper" title="adicionar novo operador" > 
+              <img src="../../imgs/adicionar.svg" class="btn_mainoper" title="adicionar novo operador" id="btn_add" > 
         </div>
   </div>
 
-  <div id="novoColaborador" class="popup">
+  <div id="novoColaborador" class="popup ocultarPopup">
     <div class="janelaPopup">
         <div class="tituloPopup">
             <div> Novo Colaborador </div>
@@ -32,8 +32,8 @@
 
             <div class="campoForm">
                 <label for=""> Tipo </label>
-                <select name="f_tipo" id="f_tipo">
-                    <option value=""> teste</option>
+                <select name="f_tipo" id="f_tipoColab">
+                    <option value=""> </option>
                 </select>
             </div>
 
@@ -46,8 +46,17 @@
             </div>
 
             <div class="campoForm">
-                <label for=""> Telefone </label>
-                
+                <label for=""> Telefones </label>
+                <input type="text" id="f_telefone" name="f_telefone">
+                <div id="telefones" class="telefones">
+                  <!--  <div class="tel">
+                        <div class="numTel">
+                            988 4894794 2
+                        </div>
+                        <img src="../../imgs/deletar.svg" alt="lixeira" class="delTel" id="btn_delTel">
+                    </div>
+                  <-->
+                </div>
             </div>
         </div>
             

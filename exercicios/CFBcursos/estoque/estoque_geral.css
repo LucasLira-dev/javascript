@@ -261,6 +261,9 @@ body{
     flex-wrap: wrap;
 }
 
+#f_telefone{
+    width: 210px;
+}
 .tel{
     display: flex;
     justify-content: flex-start;
@@ -273,7 +276,7 @@ body{
     background-color: #888 !important;
     border: 5px;
     border-radius: 5px 0px 0px 5px !important;
-    width: 130px !important;
+    width: 120px !important;
 }
 
 .delTel{

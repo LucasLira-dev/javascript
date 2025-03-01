@@ -23,3 +23,10 @@ body{
 .c5{
     width: 200px;
 }
+
+.img_foto{
+    width: 75px;
+    height: 100px;
+    border: 1px solid #000;
+    border-radius: 5px;
+}

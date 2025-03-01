@@ -4,10 +4,12 @@ const novoColaborador= document.getElementById('novoColaborador');
 const btn_fechar= document.getElementById('btn_fechar');
 const btn_gravar= document.getElementById('btn_gravar');
 const btn_cancelar= document.getElementById('btn_cancelar');
-const f_tipoColab= document.getElementById('f_tipoColab');
 const telefones= document.getElementById('telefones');
 const f_telefone= document.getElementById('f_telefone');
-//const btn_delTel= document.getElementById('btn_delTel'); //
+const f_nome= document.getElementById('f_nome');
+const f_tipoColab= document.getElementById('f_tipoColab');
+const f_status= document.getElementById('f_status');
+
 
 
 
@@ -78,27 +80,61 @@ btn_cancelar.addEventListener('click', (evt)=>{
 })
 
 btn_gravar.addEventListener('click', (evt)=>{
+    if(f_nome.value.trim()==='' && telefones.children.length===0){
+        alert('Informe o nome do colaborador e pelo menos um telefone');  
+    } else{
+
+        const tels= [...document.querySelectorAll('.numTel')];
+        let numTels= [];
+        tels.forEach(item=>{
+            numTels.push(item.textContent
+            );
+        }) 
+
+        const dados= {
+            s_nome_usuario: f_nome.value,
+            n_tipousuario_tipousuario: f_tipoColab.value,
+            c_status_usuario: f_status.value,
+            numTelefones: numTels
+        }
+    
+        const cabe={
+            method: 'POST',
+            data: JSON.stringify(dados)
+        }
+    
+        const endpoint= `http://127.0.0.1:1880/novocolab`
+        fetch(endpoint)
+        .then(res=> res.json())
+        .then(res=>{
+            console.log(res);
+        })
+    }
+ 
     novoColaborador.classList.add('ocultarPopup')
 })
 
 f_telefone.addEventListener('keyup', (evt)=>{
-    if(evt.key==="Enter" && evt.target.value.trim()!==''){
+    if(evt.key==="Enter" && evt.target.value.trim()!=='' && evt.target.value.length>=8 && evt.target.value.length<=11){
         const divTel= document.createElement('div');
         divTel.setAttribute('class', 'tel');
         const divNumTel= document.createElement('div');
-        divNumTel.setAttribute('class', 'numTel');
+        divNumTel.setAttribute('class', 'numTel'); 
         divNumTel.textContent= evt.target.value;
         const Lixeira= document.createElement('img');
         Lixeira.setAttribute('src', '../../imgs/deletar.svg');
         Lixeira.setAttribute('class', 'delTel');
         Lixeira.addEventListener('click', (evt)=>{
-            console.log(evt.target.parentElement);
             evt.target.parentElement.remove();  
         })
         divTel.appendChild(divNumTel);
         divTel.appendChild(Lixeira);
         telefones.appendChild(divTel);
         evt.target.value= '';
+    }else{
+        if(evt.key==="Enter"){
+            alert('Informe um número de telefone válido');
+        }
     }
 })
 

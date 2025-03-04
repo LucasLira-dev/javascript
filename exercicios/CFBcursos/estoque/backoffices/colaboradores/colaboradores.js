@@ -10,6 +10,9 @@ const f_nome= document.getElementById('f_nome');
 const f_tipoColab= document.getElementById('f_tipoColab');
 const f_status= document.getElementById('f_status');
 
+const f_foto= document.getElementById('f_foto');
+const img_foto= document.getElementById('img_foto');
+
 
 
 
@@ -95,24 +98,34 @@ btn_gravar.addEventListener('click', (evt)=>{
             s_nome_usuario: f_nome.value,
             n_tipousuario_tipousuario: f_tipoColab.value,
             c_status_usuario: f_status.value,
-            numTelefones: numTels
+            numtelefones: numTels,
+            s_foto_usuario: img_foto.getAttribute('src')
         }
     
-        const cabe={
-            method: 'POST',
-            data: JSON.stringify(dados)
+        const cab={
+            method: 'post',
+            body: JSON.stringify(dados)
         }
     
-        const endpoint= `http://127.0.0.1:1880/novocolab`
-        fetch(endpoint)
-        .then(res=> res.json())
+       const endpointnovocolab= `http://127.0.0.1:1880/novocolab`
+        fetch(endpointnovocolab, cab)
         .then(res=>{
-            console.log(res);
+            if (res.status === 200) {
+                alert('Colaborador cadastrado com sucesso');
+            } else {
+                alert('Erro ao cadastrar colaborador');
+            }
         })
-    }
+        .catch(err => {
+            console.error('Erro na requisição:', err);
+        })
+            
+     
+}
  
     novoColaborador.classList.add('ocultarPopup')
 })
+
 
 f_telefone.addEventListener('keyup', (evt)=>{
     if(evt.key==="Enter" && evt.target.value.trim()!=='' && evt.target.value.length>=8 && evt.target.value.length<=11){
@@ -136,5 +149,20 @@ f_telefone.addEventListener('keyup', (evt)=>{
             alert('Informe um número de telefone válido');
         }
     }
+})
+
+const converte_imagem_b64= (localDestino, arquivoimg)=>{
+    const obj= arquivoimg
+    const reader= new FileReader();
+    reader.addEventListener('load', ()=>{
+        localDestino.src= reader.result;
+    })
+    if(obj){
+        reader.readAsDataURL(obj);
+    }
+}
+
+f_foto.addEventListener('change', (evt)=>{
+   converte_imagem_b64(img_foto, evt.target.files[0]); 
 })
 

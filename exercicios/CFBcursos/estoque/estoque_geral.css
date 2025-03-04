@@ -99,6 +99,7 @@ body{
     justify-content: center;
     flex-direction: row;
     align-items: center;
+    border: 1px solid #005288;
 }
 
 .colunaTituloGrid{
@@ -111,7 +112,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
+   
 }
 
 .linhaGrid{
@@ -119,6 +121,9 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
 }
 
 .colunaLinhaGrid{
@@ -230,6 +235,18 @@ body{
     box-sizing: border-box;
 }
 
+.campoForm2{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .campoForm input, .campoForm select{
     width: 100%;
     padding: 5px;
@@ -252,6 +269,10 @@ body{
 }
 
 /* */
+
+.input_foto{
+    display: none;
+}
 
 .telefones{
     display: flex;

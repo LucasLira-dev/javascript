@@ -52,6 +52,21 @@ fetch(endpoint_todoscolaboradores)
         divc5.setAttribute('class', 'colunaLinhaGrid c5');
         linhaGrid.appendChild(divc5);
 
+        const img_status= document.createElement('img');
+        img_status.setAttribute('src', '../../imgs/on.svg');
+        img_status.setAttribute('class', 'img_on iconeop');
+        divc5.appendChild(img_status);
+
+        const img_editar= document.createElement('img');
+        img_editar.setAttribute('src', '../../imgs/editar.svg');
+        img_editar.setAttribute('class', 'img_editar iconeop');
+        divc5.appendChild(img_editar);
+
+        const img_excluir= document.createElement('img');
+        img_excluir.setAttribute('src', '../../imgs/deletar.svg');
+        img_excluir.setAttribute('class', 'img_excluir iconeop');
+        divc5.appendChild(img_excluir);
+
         dadosGrid.appendChild(linhaGrid);
     })
 });
@@ -112,6 +127,13 @@ btn_gravar.addEventListener('click', (evt)=>{
         .then(res=>{
             if (res.status === 200) {
                 alert('Colaborador cadastrado com sucesso');
+
+                f_nome.value= '';
+                f_tipoColab.value= '';
+                f_status.value= '';
+                img_foto.src= '';
+                telefones.innerHTML= '';
+
             } else {
                 alert('Erro ao cadastrar colaborador');
             }

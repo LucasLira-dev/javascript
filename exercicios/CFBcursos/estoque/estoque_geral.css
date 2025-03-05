@@ -106,6 +106,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1px;
 }
 
 .dadosGrid{
@@ -124,12 +125,43 @@ body{
     border-bottom: 1px solid #000;
     border-left: 1px solid #000;
     border-right: 1px solid #000;
+    padding: 5px;
+}
+
+.linhaGrid:nth-child(odd){
+    background-color: #ccc;
+}
+
+.linhaGrid:nth-child(even){
+    background-color: #eee;
+}
+
+.linhaGrid:hover{
+    background-color: #0ac;
+    color: #fff;
 }
 
 .colunaLinhaGrid{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.iconeop{
+    cursor: pointer;
+    width: 25px;
+}
+
+.img_on{
+    filter: invert(25%) sepia(100%) saturate(500%) hue-rotate(100deg) brightness(100%) contrast(100%); /* Altere a cor aqui */
+}
+
+.img_off{
+    filter: invert(25%) sepia(100%) saturate(500%) hue-rotate(100deg) brightness(100%) contrast(100%); /* Altere a cor aqui */
+}
+
+.img_excluir, .img_editar{
+     filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(100deg) brightness(0%) contrast(100%); /* Altere a cor aqui */
 }
 /* */
 
@@ -147,6 +179,8 @@ body{
     cursor: pointer;
     width: 40px;
 }
+
+
 
 /* */
 

@@ -13,6 +13,8 @@ const f_status= document.getElementById('f_status');
 const f_foto= document.getElementById('f_foto');
 const img_foto= document.getElementById('img_foto');
 
+// n= novo colaborador, e= editar colaborador
+let modojanela= 'n'; 
 
 
 
@@ -52,14 +54,27 @@ fetch(endpoint_todoscolaboradores)
         divc5.setAttribute('class', 'colunaLinhaGrid c5');
         linhaGrid.appendChild(divc5);
 
-        const img_status= document.createElement('img');
-        img_status.setAttribute('src', '../../imgs/on.svg');
-        img_status.setAttribute('class', 'img_on iconeop');
-        divc5.appendChild(img_status);
+        // const img_status= document.createElement('img');
+        // img_status.setAttribute('src', '../../imgs/on.svg');
+        // img_status.setAttribute('class', 'img_on iconeop');
+        // divc5.appendChild(img_status);
 
         const img_editar= document.createElement('img');
         img_editar.setAttribute('src', '../../imgs/editar.svg');
         img_editar.setAttribute('class', 'img_editar iconeop');
+        img_editar.addEventListener('click', (evt)=>{
+            modojanela= 'e';
+            document.getElementById('tituloPopup').textContent= 'Editar Colaborador';
+            novoColaborador.classList.remove('ocultarPopup');
+
+            const id= evt.target.parentNode.parentNode.firstChild.textContent;
+
+            f_nome.value= item.s_nome_usuario;
+            f_tipoColab.value= item.n_tipousuario_tipousuario;
+            f_status.value= item.c_status_usuario;
+            img_foto.src= item.s_foto_usuario;
+
+        })
         divc5.appendChild(img_editar);
 
         const img_excluir= document.createElement('img');
@@ -86,7 +101,15 @@ fetch(endpoint_tiposColab)
 });
 
 btn_add.addEventListener('click', (evt)=>{
+    modojanela= 'n';
     novoColaborador.classList.remove('ocultarPopup')
+    document.getElementById('tituloPopup').textContent= 'Novo Colaborador';
+
+    f_nome.value= '';
+    f_tipoColab.value= '';
+    f_status.value= '';
+    img_foto.src= '';
+    telefones.innerHTML= '';
 })
 
 btn_fechar.addEventListener('click', (evt)=>{

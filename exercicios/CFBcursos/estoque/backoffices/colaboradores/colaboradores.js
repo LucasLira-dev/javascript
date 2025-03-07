@@ -17,12 +17,28 @@ const img_foto= document.getElementById('img_foto');
 let modojanela= 'n'; 
 
 
+const criarCxTelefone=(fone)=>{
+    const divTel= document.createElement('div');
+    divTel.setAttribute('class', 'tel');
+    const divNumTel= document.createElement('div');
+    divNumTel.setAttribute('class', 'numTel'); 
+    divNumTel.textContent= fone;
+    const Lixeira= document.createElement('img');
+    Lixeira.setAttribute('src', '../../imgs/deletar.svg');
+    Lixeira.setAttribute('class', 'delTel');
+    Lixeira.addEventListener('click', (evt)=>{
+        evt.target.parentElement.remove();  
+    })
+    divTel.appendChild(divNumTel);
+    divTel.appendChild(Lixeira);
+    telefones.appendChild(divTel);
+    evt.target.value= '';
+}
 
 const endpoint_todoscolaboradores= `http://127.0.0.1:1880/todosusuarios`;
 fetch(endpoint_todoscolaboradores)
 .then(res=> res.json())
 .then(res=>{
-    console.log(res);
     dadosGrid.innerHTML= '';
 
     res.forEach(item=>{
@@ -64,15 +80,35 @@ fetch(endpoint_todoscolaboradores)
         img_editar.setAttribute('class', 'img_editar iconeop');
         img_editar.addEventListener('click', (evt)=>{
             modojanela= 'e';
+            telefones.innerHTML= '';
             document.getElementById('tituloPopup').textContent= 'Editar Colaborador';
-            novoColaborador.classList.remove('ocultarPopup');
 
-            const id= evt.target.parentNode.parentNode.firstChild.textContent;
+            const id= evt.target.parentNode.parentNode.firstChild.innerHTML;
 
-            f_nome.value= item.s_nome_usuario;
-            f_tipoColab.value= item.n_tipousuario_tipousuario;
-            f_status.value= item.c_status_usuario;
-            img_foto.src= item.s_foto_usuario;
+            let endpoint= `http://127.0.0.1:1880/dadoscolab/${id}`;
+            fetch(endpoint)
+            .then(res=> res.json())
+            .then(res=>{
+                f_nome.value= res[0].s_nome_usuario;
+                f_tipoColab.value= res[0].n_tipousuario_tipousuario;
+                f_status.value= res[0].c_status_usuario;
+                img_foto.src= res[0].s_foto_usuario;
+
+
+                novoColaborador.classList.remove('ocultarPopup');
+            })
+
+            endpoint= `http://127.0.0.1:1880/telefonescolab/${id}`;
+            fetch(endpoint)
+            .then(res=> res.json())
+            .then(res=>{
+                res.forEach(t=>{
+                    criarCxTelefone(t.s_numero_telefone);
+                })
+                
+                novoColaborador.classList.remove('ocultarPopup');
+            })
+
 
         })
         divc5.appendChild(img_editar);
@@ -174,21 +210,7 @@ btn_gravar.addEventListener('click', (evt)=>{
 
 f_telefone.addEventListener('keyup', (evt)=>{
     if(evt.key==="Enter" && evt.target.value.trim()!=='' && evt.target.value.length>=8 && evt.target.value.length<=11){
-        const divTel= document.createElement('div');
-        divTel.setAttribute('class', 'tel');
-        const divNumTel= document.createElement('div');
-        divNumTel.setAttribute('class', 'numTel'); 
-        divNumTel.textContent= evt.target.value;
-        const Lixeira= document.createElement('img');
-        Lixeira.setAttribute('src', '../../imgs/deletar.svg');
-        Lixeira.setAttribute('class', 'delTel');
-        Lixeira.addEventListener('click', (evt)=>{
-            evt.target.parentElement.remove();  
-        })
-        divTel.appendChild(divNumTel);
-        divTel.appendChild(Lixeira);
-        telefones.appendChild(divTel);
-        evt.target.value= '';
+        criarCxTelefone(evt.target.value);
     }else{
         if(evt.key==="Enter"){
             alert('Informe um número de telefone válido');

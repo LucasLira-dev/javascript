@@ -17,7 +17,7 @@ const img_foto= document.getElementById('img_foto');
 let modojanela= 'n'; 
 
 
-const criarCxTelefone=(fone)=>{
+const criarCxTelefone=(fone, idtel)=>{
     const divTel= document.createElement('div');
     divTel.setAttribute('class', 'tel');
     const divNumTel= document.createElement('div');
@@ -26,13 +26,27 @@ const criarCxTelefone=(fone)=>{
     const Lixeira= document.createElement('img');
     Lixeira.setAttribute('src', '../../imgs/deletar.svg');
     Lixeira.setAttribute('class', 'delTel');
+    Lixeira.setAttribute("data-idtel", idtel);
     Lixeira.addEventListener('click', (evt)=>{
-        evt.target.parentElement.remove();  
+        const objTel= evt.target;
+        const idtel= objTel.dataset.idtel;
+
+        const endpoint_delTelefone= `http://127.0.0.1:1880/deltelefone/${idtel}`;
+        fetch(endpoint_delTelefone)
+        .then(res=>{
+            if(res.status===200){
+                alert('Telefone excluído com sucesso');
+                evt.target.parentElement.remove();
+            } else{
+                console.log('Erro ao excluir telefone');
+            }
+        })
+  
+
     })
     divTel.appendChild(divNumTel);
     divTel.appendChild(Lixeira);
     telefones.appendChild(divTel);
-    evt.target.value= '';
 }
 
 const endpoint_todoscolaboradores= `http://127.0.0.1:1880/todosusuarios`;
@@ -103,7 +117,7 @@ fetch(endpoint_todoscolaboradores)
             .then(res=> res.json())
             .then(res=>{
                 res.forEach(t=>{
-                    criarCxTelefone(t.s_numero_telefone);
+                    criarCxTelefone(t.s_numero_telefone, t.n_telefone_telefone);
                 })
                 
                 novoColaborador.classList.remove('ocultarPopup');
@@ -181,7 +195,7 @@ btn_gravar.addEventListener('click', (evt)=>{
             body: JSON.stringify(dados)
         }
     
-       const endpointnovocolab= `http://127.0.0.1:1880/novocolab`
+         const endpointnovocolab= `http://127.0.0.1:1880/novocolab`
         fetch(endpointnovocolab, cab)
         .then(res=>{
             if (res.status === 200) {

@@ -17,37 +17,89 @@ const img_foto= document.getElementById('img_foto');
 let modojanela= 'n'; 
 
 
-const criarCxTelefone=(fone, idtel)=>{
+const criarCxTelefone=(fone, idtel, tipo)=>{
     const divTel= document.createElement('div');
     divTel.setAttribute('class', 'tel');
-    const divNumTel= document.createElement('div');
-    divNumTel.setAttribute('class', 'numTel'); 
-    divNumTel.textContent= fone;
-    const Lixeira= document.createElement('img');
-    Lixeira.setAttribute('src', '../../imgs/deletar.svg');
-    Lixeira.setAttribute('class', 'delTel');
-    Lixeira.setAttribute("data-idtel", idtel);
-    Lixeira.addEventListener('click', (evt)=>{
-        const objTel= evt.target;
-        const idtel= objTel.dataset.idtel;
 
-        const endpoint_delTelefone= `http://127.0.0.1:1880/deltelefone/${idtel}`;
-        fetch(endpoint_delTelefone)
-        .then(res=>{
-            if(res.status===200){
-                alert('Telefone excluído com sucesso');
-                evt.target.parentElement.remove();
-            } else{
-                console.log('Erro ao excluir telefone');
-            }
-        })
+    // if(tipo==="n"){
+    //     divNumTel.setAttribute('class', 'numTel novoTel');
+    // }else{
+    //     divNumTel.setAttribute('class', 'numTel editarTel');
+        
+    // }
+
+      // Verifica se o número já existe na lista
+      const numerosExistentes = [...document.querySelectorAll('.numTel')].map(tel => tel.textContent.trim());
+      if (numerosExistentes.includes(fone.trim())) {
+          return; // Sai da função se o número já existir
+      }
   
 
-    })
-    divTel.appendChild(divNumTel);
-    divTel.appendChild(Lixeira);
-    telefones.appendChild(divTel);
-}
+      
+      const divNumTel = document.createElement('div');
+      divNumTel.setAttribute('class', tipo === "n" ? 'numTel novoTel' : 'numTel editarTel');
+      divNumTel.textContent = fone;
+  
+      const Lixeira = document.createElement('img');
+      Lixeira.setAttribute('src', '../../imgs/deletar.svg');
+      Lixeira.setAttribute('class', 'delTel');
+      Lixeira.setAttribute("data-idtel", idtel);
+  
+      Lixeira.addEventListener('click', (evt) => {
+         
+        const objTel = evt.target;
+        const idtel = objTel.getAttribute('data-idtel'); 
+        if (idtel !== '-1') {
+  
+              const endpoint_delTelefone = `http://127.0.0.1:1880/deltelefone/${idtel}`;
+              fetch(endpoint_delTelefone)
+                  .then(res => {
+                      if (res.status === 200) {
+                          evt.target.parentElement.remove();
+                      }
+                  });
+          } else {
+              evt.target.parentElement.remove();
+          }
+      });
+  
+      divTel.appendChild(divNumTel);
+      divTel.appendChild(Lixeira);
+      telefones.appendChild(divTel);
+  };
+
+  
+
+//     divNumTel.textContent= fone;
+//     const Lixeira= document.createElement('img');
+//     Lixeira.setAttribute('src', '../../imgs/deletar.svg');
+//     Lixeira.setAttribute('class', 'delTel');
+//     Lixeira.setAttribute("data-idtel", idtel);
+
+//     Lixeira.addEventListener('click', (evt)=>{
+
+//         if(idtel!=='-1'){
+//             const objTel= evt.target;
+//             const idtel= objTel.dataset.idtel;
+    
+//             const endpoint_delTelefone= `http://127.0.0.1:1880/deltelefone/${idtel}`;
+//             fetch(endpoint_delTelefone)
+//             .then(res=>{
+//                 if(res.status===200){
+//                     evt.target.parentElement.remove();
+//                 }
+//             })
+//         }else{
+//             evt.target.parentElement.remove();
+//         }
+       
+  
+
+    
+//     divTel.appendChild(divNumTel);
+//     divTel.appendChild(Lixeira);
+//     telefones.appendChild(divTel);
+// }
 
 const endpoint_todoscolaboradores= `http://127.0.0.1:1880/todosusuarios`;
 fetch(endpoint_todoscolaboradores)
@@ -103,6 +155,8 @@ fetch(endpoint_todoscolaboradores)
             fetch(endpoint)
             .then(res=> res.json())
             .then(res=>{
+                btn_gravar.setAttribute('data-idcolab', id);
+
                 f_nome.value= res[0].s_nome_usuario;
                 f_tipoColab.value= res[0].n_tipousuario_tipousuario;
                 f_status.value= res[0].c_status_usuario;
@@ -117,7 +171,7 @@ fetch(endpoint_todoscolaboradores)
             .then(res=> res.json())
             .then(res=>{
                 res.forEach(t=>{
-                    criarCxTelefone(t.s_numero_telefone, t.n_telefone_telefone);
+                    criarCxTelefone(t.s_numero_telefone, t.n_telefone_telefone, "e");
                 })
                 
                 novoColaborador.classList.remove('ocultarPopup');
@@ -170,61 +224,62 @@ btn_cancelar.addEventListener('click', (evt)=>{
     novoColaborador.classList.add('ocultarPopup')
 })
 
-btn_gravar.addEventListener('click', (evt)=>{
-    if(f_nome.value.trim()==='' && telefones.children.length===0){
-        alert('Informe o nome do colaborador e pelo menos um telefone');  
-    } else{
+// 
 
-        const tels= [...document.querySelectorAll('.numTel')];
-        let numTels= [];
-        tels.forEach(item=>{
-            numTels.push(item.textContent
-            );
-        }) 
+btn_gravar.addEventListener('click', (evt) => {
+    if (f_nome.value.trim() === '' || telefones.children.length === 0) {
+        alert('Informe o nome do colaborador e pelo menos um telefone');
+    } else {
+        // Coleta todos os números de telefone (novos e existentes)
+        const todosNumeros = [...document.querySelectorAll('.numTel')].map(tel => tel.textContent.trim());
 
-        const dados= {
+        const dados = {
+            n_usuario_usuario: evt.target.dataset.idcolab,
             s_nome_usuario: f_nome.value,
             n_tipousuario_tipousuario: f_tipoColab.value,
             c_status_usuario: f_status.value,
-            numtelefones: numTels,
+            numtelefones: todosNumeros, // Envia todos os números
             s_foto_usuario: img_foto.getAttribute('src')
-        }
-    
-        const cab={
+        };
+
+        const cab = {
             method: 'post',
             body: JSON.stringify(dados)
+        };
+
+        let endpointnovoeditarcolab = null;
+        if (modojanela == 'n') {
+            endpointnovoeditarcolab = `http://127.0.0.1:1880/novocolab`;
+        } else {
+            endpointnovoeditarcolab = `http://127.0.0.1:1880/editarcolab`;
         }
-    
-         const endpointnovocolab= `http://127.0.0.1:1880/novocolab`
-        fetch(endpointnovocolab, cab)
-        .then(res=>{
-            if (res.status === 200) {
-                alert('Colaborador cadastrado com sucesso');
 
-                f_nome.value= '';
-                f_tipoColab.value= '';
-                f_status.value= '';
-                img_foto.src= '';
-                telefones.innerHTML= '';
+        fetch(endpointnovoeditarcolab, cab)
+            .then(res => {
+                if (res.status === 200) {
+                    alert(modojanela === 'n' ? 'Colaborador cadastrado com sucesso' : 'Colaborador atualizado com sucesso');
 
-            } else {
-                alert('Erro ao cadastrar colaborador');
-            }
-        })
-        .catch(err => {
-            console.error('Erro na requisição:', err);
-        })
-            
-     
-}
- 
-    novoColaborador.classList.add('ocultarPopup')
-})
+                    f_nome.value = '';
+                    f_tipoColab.value = '';
+                    f_status.value = '';
+                    img_foto.src = '';
+                    telefones.innerHTML = '';
+                } else {
+                    alert('Erro ao cadastrar/editar colaborador');
+                }
+            })
+            .catch(err => {
+                console.error('Erro na requisição:', err);
+            });
+
+        novoColaborador.classList.add('ocultarPopup');
+    }
+});
 
 
 f_telefone.addEventListener('keyup', (evt)=>{
     if(evt.key==="Enter" && evt.target.value.trim()!=='' && evt.target.value.length>=8 && evt.target.value.length<=11){
-        criarCxTelefone(evt.target.value);
+        criarCxTelefone(evt.target.value, '-1', "n");
     }else{
         if(evt.key==="Enter"){
             alert('Informe um número de telefone válido');

@@ -14,19 +14,13 @@ const f_foto= document.getElementById('f_foto');
 const img_foto= document.getElementById('img_foto');
 
 // n= novo colaborador, e= editar colaborador
-let modojanela= 'n'; 
+let modojanela= 'n';
+const serv= sessionStorage.getItem('servidor_nodered');//pegando o servidor do nodered 
 
 
 const criarCxTelefone=(fone, idtel, tipo)=>{
     const divTel= document.createElement('div');
     divTel.setAttribute('class', 'tel');
-
-    // if(tipo==="n"){
-    //     divNumTel.setAttribute('class', 'numTel novoTel');
-    // }else{
-    //     divNumTel.setAttribute('class', 'numTel editarTel');
-        
-    // }
 
       // Verifica se o número já existe na lista
       const numerosExistentes = [...document.querySelectorAll('.numTel')].map(tel => tel.textContent.trim());
@@ -51,7 +45,7 @@ const criarCxTelefone=(fone, idtel, tipo)=>{
         const idtel = objTel.getAttribute('data-idtel'); 
         if (idtel !== '-1') {
   
-              const endpoint_delTelefone = `http://127.0.0.1:1880/deltelefone/${idtel}`;
+              const endpoint_delTelefone = `${serv}deltelefone/${idtel}`;
               fetch(endpoint_delTelefone)
                   .then(res => {
                       if (res.status === 200) {
@@ -68,40 +62,10 @@ const criarCxTelefone=(fone, idtel, tipo)=>{
       telefones.appendChild(divTel);
   };
 
+ 
   
-
-//     divNumTel.textContent= fone;
-//     const Lixeira= document.createElement('img');
-//     Lixeira.setAttribute('src', '../../imgs/deletar.svg');
-//     Lixeira.setAttribute('class', 'delTel');
-//     Lixeira.setAttribute("data-idtel", idtel);
-
-//     Lixeira.addEventListener('click', (evt)=>{
-
-//         if(idtel!=='-1'){
-//             const objTel= evt.target;
-//             const idtel= objTel.dataset.idtel;
-    
-//             const endpoint_delTelefone= `http://127.0.0.1:1880/deltelefone/${idtel}`;
-//             fetch(endpoint_delTelefone)
-//             .then(res=>{
-//                 if(res.status===200){
-//                     evt.target.parentElement.remove();
-//                 }
-//             })
-//         }else{
-//             evt.target.parentElement.remove();
-//         }
-       
-  
-
-    
-//     divTel.appendChild(divNumTel);
-//     divTel.appendChild(Lixeira);
-//     telefones.appendChild(divTel);
-// }
-
-const endpoint_todoscolaboradores= `http://127.0.0.1:1880/todosusuarios`;
+const carregarTodosColabs=()=>{
+    const endpoint_todoscolaboradores= `${serv}todosusuarios`;
 fetch(endpoint_todoscolaboradores)
 .then(res=> res.json())
 .then(res=>{
@@ -151,7 +115,7 @@ fetch(endpoint_todoscolaboradores)
 
             const id= evt.target.parentNode.parentNode.firstChild.innerHTML;
 
-            let endpoint= `http://127.0.0.1:1880/dadoscolab/${id}`;
+            let endpoint= `${serv}dadoscolab/${id}`;
             fetch(endpoint)
             .then(res=> res.json())
             .then(res=>{
@@ -166,12 +130,13 @@ fetch(endpoint_todoscolaboradores)
                 novoColaborador.classList.remove('ocultarPopup');
             })
 
-            endpoint= `http://127.0.0.1:1880/telefonescolab/${id}`;
+            endpoint= `${serv}telefonescolab/${id}`;
             fetch(endpoint)
             .then(res=> res.json())
             .then(res=>{
                 res.forEach(t=>{
                     criarCxTelefone(t.s_numero_telefone, t.n_telefone_telefone, "e");
+                    carregarTodosColabs
                 })
                 
                 novoColaborador.classList.remove('ocultarPopup');
@@ -189,8 +154,11 @@ fetch(endpoint_todoscolaboradores)
         dadosGrid.appendChild(linhaGrid);
     })
 });
+}
 
-const endpoint_tiposColab= `http://127.0.0.1:1880/tiposcolab`;
+carregarTodosColabs();
+
+const endpoint_tiposColab= `${serv}tiposcolab`;
 fetch(endpoint_tiposColab)
 .then(res=> res.json())
 .then(res=>{
@@ -249,9 +217,9 @@ btn_gravar.addEventListener('click', (evt) => {
 
         let endpointnovoeditarcolab = null;
         if (modojanela == 'n') {
-            endpointnovoeditarcolab = `http://127.0.0.1:1880/novocolab`;
+            endpointnovoeditarcolab = `${serv}novocolab`;
         } else {
-            endpointnovoeditarcolab = `http://127.0.0.1:1880/editarcolab`;
+            endpointnovoeditarcolab = `${serv}editarcolab`;
         }
 
         fetch(endpointnovoeditarcolab, cab)
@@ -264,6 +232,7 @@ btn_gravar.addEventListener('click', (evt) => {
                     f_status.value = '';
                     img_foto.src = '';
                     telefones.innerHTML = '';
+                    carregarTodosColabs();
                 } else {
                     alert('Erro ao cadastrar/editar colaborador');
                 }

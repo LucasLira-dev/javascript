@@ -167,7 +167,7 @@ body{
 }
 
 .img_off{
-    filter: invert(25%) sepia(100%) saturate(500%) hue-rotate(100deg) brightness(100%) contrast(100%); /* Altere a cor aqui */
+        filter: invert(20%) sepia(100%) saturate(700%) hue-rotate(-50deg) brightness(100%) contrast(100%); /* Cor vermelha */
 }
 
 .img_excluir, .img_editar{

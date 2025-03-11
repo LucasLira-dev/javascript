@@ -100,10 +100,41 @@ fetch(endpoint_todoscolaboradores)
         divc5.setAttribute('class', 'colunaLinhaGrid c5');
         linhaGrid.appendChild(divc5);
 
-        // const img_status= document.createElement('img');
-        // img_status.setAttribute('src', '../../imgs/on.svg');
-        // img_status.setAttribute('class', 'img_on iconeop');
-        // divc5.appendChild(img_status);
+        const img_status= document.createElement('img');
+        if(item.c_status_usuario==='A'){
+            img_status.setAttribute('src', '../../imgs/on.svg');
+            img_status.setAttribute('class', 'img_on iconeop');
+        }else{
+            img_status.setAttribute('src', '../../imgs/off.svg');
+            img_status.setAttribute('class', 'img_off iconeop');
+        }
+        
+        img_status.setAttribute('data-idcolab', item.n_usuario_usuario);
+        img_status.addEventListener('click', (evt)=>{
+            const idcolab= evt.target.getAttribute('data-idcolab');
+            if(evt.target.getAttribute('src').includes('on')){
+                const endpoint_mudarStatus= `${serv}mudarstatuscolab/${idcolab}/I`;
+                fetch(endpoint_mudarStatus)
+                .then(res=>{
+                    if(res.status===200){
+                        evt.target.setAttribute('src', '../../imgs/off.svg');
+                        evt.target.parentNode.parentNode.childNodes[3].textContent= 'I';
+                        evt.target.setAttribute('class', 'img_off iconeop');
+                    }
+                })
+                }else{
+                    const endpoint_mudarStatus= `${serv}mudarstatuscolab/${idcolab}/A`;
+                    fetch(endpoint_mudarStatus)
+                    .then(res=>{
+                        if(res.status==200){
+                            evt.target.setAttribute('src', '../../imgs/on.svg');
+                            evt.target.parentNode.parentNode.childNodes[3].textContent= 'A';
+                            evt.target.setAttribute('class', 'img_on iconeop');
+                        }
+                    })
+                }
+        });
+        divc5.appendChild(img_status);
 
         const img_editar= document.createElement('img');
         img_editar.setAttribute('src', '../../imgs/editar.svg');

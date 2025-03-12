@@ -90,7 +90,7 @@ body{
     justify-content: center;
     align-items: flex-start;
     width: 100%;
-    max-height: calc(100vh - 100px);
+    max-height: calc(100vh - 160px);
     overflow-y: auto;
   
 }
@@ -151,6 +151,10 @@ body{
     color: #fff;
 }
 
+.ocultarLinhaGrid{
+    display: none !important;
+}
+
 .colunaLinhaGrid{
     display: flex;
     justify-content: center;
@@ -172,7 +176,7 @@ body{
 
 .img_excluir, .img_editar{
      filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(100deg) brightness(0%) contrast(100%); /* Altere a cor aqui */
-}
+} 
 /* */
 
 /* topo da janela */
@@ -307,6 +311,27 @@ body{
     background-color: #fff;
 }
 
+.campoFiltragem{
+    width: 300px;
+}
+
+.campoRadio{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    border: 1px solid #888;
+}
+ 
+.inputFiltragem{
+    border: 3px solid #888 !important;
+}
+
+.filtragem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .ocultarPopup{
    opacity: 0 !important;
    z-index: -1 !important;

@@ -13,8 +13,51 @@
         <div></div>
         <div> Colaboradores </div>
         <div>
+              <img src="../../imgs/lupa.svg" alt="lupa de pesquisa" class="btn_mainoper" id="btn_pesq"/>
               <img src="../../imgs/adicionar.svg" class="btn_mainoper" title="adicionar novo operador" id="btn_add" > 
         </div>
+  </div>
+
+  <div id="filtragem" class="filtragem ">
+    <div class="campoForm campoFiltragem">
+        <label for=""> Filtrar pelo nome </label>
+        <input type="text" id="f_filtragem" name="f_filtragem" class="campoFiltragem">
+    </div>
+  </div>
+
+  <div id="pesquisa" class="popup ocultarPopup">
+    <div class="janelaPopup">
+        <div class="tituloPopup">
+            <div id="tituloPopup"> Pesquisar Colaborador </div>
+            <img src="../../imgs/fechar.svg" class="btn_janelaoper" id="btn_fecharPopupPesq" title="fechar janela">
+        </div>
+
+        <div class="corpoPopup"> 
+            <div class="campoForm">
+                <label for=""> Tipo da pesquisa </label>
+                <div class="campoRadio">
+                    <input type="radio" id="f_pesqId" name="f_pesqTipo"> Id
+                </div>
+                <div class="campoRadio">
+                    <input type="radio" id="f_pesqNome" name="f_pesqTipo"> Nome
+                </div>
+            </div>
+
+          
+
+            <div class="campoForm">
+                <input type="text" id="f_pesq" name="f_pesq"/> 
+            </div>
+
+        
+        </div>
+            
+        <div class="rodapePopup">
+            <button id="btn_pesquisar" class="btn_comandoPopup"> 
+                Pesquisar
+            </button>
+        </div>
+    </div>
   </div>
 
   <div id="novoColaborador" class="popup ocultarPopup">

@@ -13,6 +13,37 @@ const f_status= document.getElementById('f_status');
 const f_foto= document.getElementById('f_foto');
 const img_foto= document.getElementById('img_foto');
 
+const f_filtragem= document.getElementById('f_filtragem');
+
+const pesquisa= document.getElementById('pesquisa');
+const btn_fecharPopupPesq= document.getElementById('btn_fecharPopupPesq');
+const btn_pesq= document.getElementById('btn_pesq');
+
+f_filtragem.addEventListener('keyup', (evt)=>{
+    const linhas= [...document.querySelectorAll('.linhaGrid')];
+    let input, texto, filtragem;
+    input = evt.target;
+    filtragem = input.value.toUpperCase();
+    for (let i = 0; i < linhas.length; i++) {
+      texto= linhas[i].children[1].innerHTML
+        if (texto.toUpperCase().indexOf(filtragem) > -1) {
+            linhas[i].classList.remove('ocultarLinhaGrid');
+        } else {
+            linhas[i].classList.add('ocultarLinhaGrid');
+        }
+    }
+});
+
+btn_pesq.addEventListener('click', (evt)=>{
+    pesquisa.classList.remove('ocultarPopup');
+});
+
+
+btn_fecharPopupPesq.addEventListener('click', (evt)=>
+{
+    pesquisa.classList.add('ocultarPopup');
+});
+
 // n= novo colaborador, e= editar colaborador
 let modojanela= 'n';
 const serv= sessionStorage.getItem('servidor_nodered');//pegando o servidor do nodered 
@@ -217,6 +248,7 @@ btn_add.addEventListener('click', (evt)=>{
 
 btn_fechar.addEventListener('click', (evt)=>{
     novoColaborador.classList.add('ocultarPopup')
+    
 })
 
 btn_cancelar.addEventListener('click', (evt)=>{

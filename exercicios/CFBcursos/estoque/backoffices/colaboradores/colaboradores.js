@@ -1,3 +1,5 @@
+import {Cxmsg} from '../../utils/cxmsg.js';
+
 const dadosGrid= document.getElementById('dadosGrid');
 const btn_add= document.getElementById('btn_add');
 const novoColaborador= document.getElementById('novoColaborador');
@@ -83,7 +85,16 @@ btn_pesquisar.addEventListener('click', (evt)=>{
 
         pesquisa.classList.add('ocultarPopup');
     }else{
-        alert('Informe um nome ou id para pesquisar');
+
+        const config={
+                titulo: "pesquisar",
+                texto: "Informe um nome ou id para pesquisar",
+                cor: "#00f",
+                comandook: null,
+                comandosim: null,
+                comandonao: null
+            }
+        Cxmsg.mostrar(config)
         f_pesq.focus();
     }
 });

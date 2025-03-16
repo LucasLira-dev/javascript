@@ -378,3 +378,69 @@ body{
     cursor: pointer;
 }
 /* */
+
+
+
+
+/* caixa de mensagem */
+.cxmsg_fundo{
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: rgba(0, 0, 0, 0.75);
+     z-index: 1000000;
+    }
+    
+    .cxmsg{
+        width: 300px;
+   }
+   
+   .titulo_cxmsg{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #00f;
+        color: #fff;
+        border-radius: 10px 10px 0px 0px;
+        padding: 10px;
+   }
+   
+   .corpo_cxmsg{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        background-color: #aaa;
+        color: #000;
+        padding: 20px 5px;
+   }
+   
+   .rodape_cxmsg{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 5px;
+        background-color: #555;
+        border-radius: 0px 0px 10px 10px;
+   }
+   
+   .btn_fechar_cxmsg{
+        background-color: #f00;
+        width: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+   }
+   
+   .btn_cxmsg{
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 5px;
+        border: none;
+        color: rgb(37, 33, 33);
+        background-color: #aaa;
+        width: 50px;
+   }

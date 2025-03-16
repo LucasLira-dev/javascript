@@ -87,12 +87,13 @@ btn_pesquisar.addEventListener('click', (evt)=>{
     }else{
 
         const config={
-                titulo: "pesquisar",
+                titulo: "Alerta",
                 texto: "Informe um nome ou id para pesquisar",
-                cor: "#00f",
-                comandook: null,
-                comandosim: null,
-                comandonao: null
+                cor: "blue",
+                tipo: "ok",
+                comandook: ()=>{},
+                comandosim: ()=>{},
+                comandonao: ()=>{}
             }
         Cxmsg.mostrar(config)
         f_pesq.focus();
@@ -154,7 +155,7 @@ const criarCxTelefone=(fone, idtel, tipo)=>{
       telefones.appendChild(divTel);
   };
 
- 
+  
   
 const carregarTodosColabs=()=>{
     const endpoint_todoscolaboradores= `${serv}todosusuarios`;
@@ -324,7 +325,17 @@ btn_cancelar.addEventListener('click', (evt)=>{
 
 btn_gravar.addEventListener('click', (evt) => {
     if (f_nome.value.trim() === '' || telefones.children.length === 0) {
-        alert('Informe o nome do colaborador e pelo menos um telefone');
+
+        const config={
+            titulo: "Alerta",
+            texto: "Informe o nome do colaborador e pelo menos um telefone",
+            cor: "blue",
+            tipo: "ok",
+            comandook: ()=>{},
+            comandosim: ()=>{},
+            comandonao: ()=>{}
+        }
+
     } else {
         // Coleta todos os números de telefone (novos e existentes)
         const todosNumeros = [...document.querySelectorAll('.numTel')].map(tel => tel.textContent.trim());
@@ -362,7 +373,17 @@ btn_gravar.addEventListener('click', (evt) => {
                     telefones.innerHTML = '';
                     carregarTodosColabs();
                 } else {
-                    alert('Erro ao cadastrar/editar colaborador');
+
+                    const config={
+                        titulo: "ERRO",
+                        texto: "Erro ao gravar novo colaborador",
+                        cor: "blue",
+                        tipo: "ok",
+                        comandook: ()=>{},
+                        comandosim: ()=>{},
+                        comandonao: ()=>{}
+                    }
+                   
                 }
             })
             .catch(err => {
@@ -379,7 +400,15 @@ f_telefone.addEventListener('keyup', (evt)=>{
         criarCxTelefone(evt.target.value, '-1', "n");
     }else{
         if(evt.key==="Enter"){
-            alert('Informe um número de telefone válido');
+            const config={
+                titulo: "Erro",
+                texto: "Informe um número de telefone válido",
+                cor: "blue",
+                tipo: "ok",
+                comandook: ()=>{},
+                comandosim: ()=>{},
+                comandonao: ()=>{}
+            }
         }
     }
 })

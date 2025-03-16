@@ -13,98 +13,90 @@ class Cxmsg{
     
     static mostrar=(config)=>{
         this.config=config
-        alert(this.config.texto)
+        const cxmsg_fundo= document.createElement('div')
+        cxmsg_fundo.setAttribute('class', 'cxmsg_fundo' )
+        cxmsg_fundo.setAttribute('id', 'cxmsg_fundo' )
+
+        const cxmsg= document.createElement('div')
+        cxmsg.setAttribute('class', 'cxmsg' )
+        cxmsg_fundo.appendChild(cxmsg)
+
+        const titulo_cxmsg= document.createElement('div')
+        titulo_cxmsg.setAttribute('class', 'titulo_cxmsg' )
+        titulo_cxmsg.setAttribute('style', `background-color: ${this.config.cor} !important`)
+        cxmsg.appendChild(titulo_cxmsg)
+
+        const p_titulo= document.createElement('p')
+        p_titulo.textContent= this.config.titulo    
+
+        const img_fechar= document.createElement('img')
+        img_fechar.setAttribute('src', '../../imgs/fechar.svg')
+        img_fechar.setAttribute('class', 'btn_fechar_cxmsg')
+        img_fechar.setAttribute('id', 'btn_fechar_cxmsg')
+        img_fechar.addEventListener('click', ()=>{
+            this.fechar()
+        })
+
+        titulo_cxmsg.appendChild(p_titulo)
+        titulo_cxmsg.appendChild(img_fechar)
+
+        const corpo_cxmsg= document.createElement('div')
+        corpo_cxmsg.setAttribute('class', 'corpo_cxmsg' )
+        cxmsg.appendChild(corpo_cxmsg)
+
+        const p_corpo= document.createElement('p')
+        p_corpo.textContent= this.config.texto
+        corpo_cxmsg.appendChild(p_corpo)
+
+        const rodape_cxmsg= document.createElement('div')
+        rodape_cxmsg.setAttribute('class', 'rodape_cxmsg' )
+        cxmsg.appendChild(rodape_cxmsg)
+
+        
+        if(config.tipo=="ok"){
+            const btn_ok_cxmsg= document.createElement('button')
+            btn_ok_cxmsg.setAttribute('class', 'btn_cxmsg' )
+            btn_ok_cxmsg.setAttribute('id', 'btn_ok_cxmsg' )
+            rodape_cxmsg.appendChild(btn_ok_cxmsg)
+            btn_ok_cxmsg.textContent= 'OK'
+            btn_ok_cxmsg.addEventListener('click', ()=>{
+
+                config.comandook()
+                this.fechar()
+            })
+        }else if(config.tipo=="sn"){
+            const btn_sim_cxmsg= document.createElement('button')
+            btn_sim_cxmsg.setAttribute('class', 'btn_cxmsg' )
+            btn_sim_cxmsg.setAttribute('id', 'btn_sim_cxmsg' )
+            rodape_cxmsg.appendChild(btn_sim_cxmsg)
+            btn_sim_cxmsg.textContent= 'SIM'
+            btn_sim_cxmsg.addEventListener('click', ()=>{
+               
+                config.comandosim()
+                this.fechar()
+            })
+    
+            const btn_nao_cxmsg= document.createElement('button')
+            btn_nao_cxmsg.setAttribute('class', 'btn_cxmsg' )
+            btn_nao_cxmsg.setAttribute('id', 'btn_nao_cxmsg' )
+            rodape_cxmsg.appendChild(btn_nao_cxmsg)
+            btn_nao_cxmsg.textContent= 'NÃO'
+            btn_nao_cxmsg.addEventListener('click', ()=>{
+                config.comandonao()
+                this.fechar()
+            })
+        }
+      
+        document.body.prepend(cxmsg_fundo)
+    }
+
+    static fechar=()=>{
+        const cxmsg_fundo = document.getElementById('cxmsg_fundo');
+        if (cxmsg_fundo) {
+            cxmsg_fundo.remove();
+        }
     }
 }
 
 
 export {Cxmsg}
-
-
-// <div id="cxmsg_fundo" class="cxmsg_fundo ocultarPopup">
-// <div  id="cxmsg" class="cxmsg">
-//      <div id="titulo_cxmsg" class="titulo_cxmsg"> 
-//         <p>titulo</p> 
-//         <img src="../imgs/fechar.svg" alt="" id="btn_fechar_cxmsg" class="btn_fechar_cxmsg"> 
-//      </div>
-
-//      <div id="corpo_cxmsg" class="corpo_cxmsg">
-//           <p>mensagem</p>
-//      </div>
-
-//      <div id="rodape_cxmsg" class="rodape_cxmsg"> 
-//           <button id="btn_ok_cxmsg" class="btn_cxmsg"> OK </button> 
-//           <button id="btn_sim_cxmsg" class="btn_cxmsg"> SIM </button>
-//           <button id="btn_nao_cxmsg" class="btn_cxmsg"> NÃO </button>
-//      </div>
-// </div>
-// </div>
-
-
-
-//estilo
-
-// <style>
-// .cxmsg_fundo{
-//      position: fixed;
-//      top: 0;
-//      left: 0;
-//      width: 100%;
-//      height: 100vh;
-//      display: flex;
-//      justify-content: center;
-//      align-items: center;
-//      background-color: rgba(0, 0, 0, 0.75);
-// }
-
-// .cxmsg{
-//      width: 300px;
-// }
-
-// .titulo_cxmsg{
-//      display: flex;
-//      justify-content: space-between;
-//      align-items: center;
-//      background-color: #00f;
-//      color: #fff;
-//      border-radius: 10px 10px 0px 0px;
-//      padding: 5px;
-// }
-
-// .corpo_cxmsg{
-//      display: flex;
-//      justify-content: flex-start;
-//      align-items: center;
-//      background-color: #aaa;
-//      color: #000;
-//      padding: 5px;
-
-// }
-
-// .rodape_cxmsg{
-//      display: flex;
-//      justify-content: space-around;
-//      align-items: center;
-//      padding: 5px;
-//      background-color: #008;
-//      border-radius: 0px 0px 10px 10px;
-// }
-
-// .btn_fechar_cxmsg{
-//      background-color: #f00;
-//      width: 20px;
-//      cursor: pointer;
-//      border-radius: 5px;
-// }
-
-// .btn_cxmsg{
-//      cursor: pointer;
-//      padding: 5px;
-//      border-radius: 5px;
-//      border: none;
-//      color: rgb(37, 33, 33);
-//      background-color: #aaa;
-//      width: 50px;
-// }
-
-// </style>

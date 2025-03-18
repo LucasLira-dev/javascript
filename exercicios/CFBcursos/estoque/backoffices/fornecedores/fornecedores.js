@@ -2,7 +2,7 @@ import {Cxmsg} from '../../utils/cxmsg.js';
 
 const dadosGrid= document.getElementById('dadosGrid');
 const btn_add= document.getElementById('btn_add');
-const novoColaborador= document.getElementById('novoColaborador');
+const novoColaborador= document.getElementById('novoFornecedor');
 const btn_fechar= document.getElementById('btn_fechar');
 const btn_gravar= document.getElementById('btn_gravar');
 const btn_cancelar= document.getElementById('btn_cancelar');
@@ -186,12 +186,6 @@ const criarLinha=(item)=>{
     divc2.textContent= item.s_nome_pessoa;
     linhaGrid.appendChild(divc2);
 
-    const divc3= document.createElement('div');
-    divc3.setAttribute('class', 'colunaLinhaGrid c3');
-    divc3.textContent= item.n_tipopessoa_tipopessoa
-    ;
-    linhaGrid.appendChild(divc3);
-
     const divc4= document.createElement('div');
     divc4.setAttribute('class', 'colunaLinhaGrid c4');
     divc4.textContent= item.c_status_pessoa;        
@@ -243,7 +237,7 @@ const criarLinha=(item)=>{
     img_editar.addEventListener('click', (evt)=>{
         modojanela= 'e';
         telefones.innerHTML= '';
-        document.getElementById('tituloPopup').textContent= 'Editar Colaborador';
+        document.getElementById('tituloPopup').textContent= 'Editar Fornecedor';
 
         const id= evt.target.parentNode.parentNode.firstChild.innerHTML;
 
@@ -259,7 +253,7 @@ const criarLinha=(item)=>{
             img_foto.src= res[0].s_foto_pessoa;
             
 
-            novoColaborador.classList.remove('ocultarPopup');
+            novoFornecedor.classList.remove('ocultarPopup');
         })
 
         endpoint= `${serv}telefonescolab/${id}`;
@@ -271,7 +265,7 @@ const criarLinha=(item)=>{
                 carregarTodosColabs
             })
             
-            novoColaborador.classList.remove('ocultarPopup');
+            novoFornecedor.classList.remove('ocultarPopup');
         })
 
 
@@ -297,13 +291,13 @@ fetch(endpoint_tiposColab)
          opt.textContent= item.s_desc_tipopessoa;
          f_tipoColab.appendChild(opt);
     })
-   
+    
 });
 
 btn_add.addEventListener('click', (evt)=>{
     modojanela= 'n';
-    novoColaborador.classList.remove('ocultarPopup')
-    document.getElementById('tituloPopup').textContent= 'Novo Colaborador';
+    novoFornecedor.classList.remove('ocultarPopup')
+    document.getElementById('tituloPopup').textContent= 'Novo Fornecedor';
 
     f_nome.value= '';
     f_tipoColab.value= '';
@@ -313,12 +307,12 @@ btn_add.addEventListener('click', (evt)=>{
 })
 
 btn_fechar.addEventListener('click', (evt)=>{
-    novoColaborador.classList.add('ocultarPopup')
+    novoFornecedor.classList.add('ocultarPopup')
     
 })
 
 btn_cancelar.addEventListener('click', (evt)=>{
-    novoColaborador.classList.add('ocultarPopup')
+    novoFornecedor.classList.add('ocultarPopup')
 })
 
 // 
@@ -390,7 +384,7 @@ btn_gravar.addEventListener('click', (evt) => {
                 console.error('Erro na requisição:', err);
             });
 
-        novoColaborador.classList.add('ocultarPopup');
+        novoFornecedor.classList.add('ocultarPopup');
     }
 }); 
 

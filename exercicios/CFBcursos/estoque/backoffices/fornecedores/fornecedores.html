@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Colaboradores - BackOffice</title>
+    <title> Fornecedores - BackOffice</title>
     <link rel="stylesheet" href="../../estoque_geral.css">
-    <link rel="stylesheet" href="colaboradores.css">
+    <link rel="stylesheet" href="fornecedores.css">
 </head>
 <body>
     
   <div id="topoJanela" class="topoJanela">
         <div></div>
-        <div> Colaboradores </div>
+        <div> Fornecedores </div>
         <div>
               <img src="../../imgs/lupa.svg" alt="lupa de pesquisa" class="btn_mainoper" id="btn_pesq"/>
               <img src="../../imgs/listarTudo.svg" alt="listar-todos" class="btn_mainoper" id="btn_listarTudo"/>
@@ -29,7 +29,7 @@
   <div id="pesquisa" class="popup ocultarPopup">
     <div class="janelaPopup">
         <div class="tituloPopup">
-            <div id="tituloPopupPesquisar"> Pesquisar Colaborador </div>
+            <div id="tituloPopupPesquisar"> Pesquisar Fornecedor </div>
             <img src="../../imgs/fechar.svg" class="btn_janelaoper" id="btn_fecharPopupPesq" title="fechar janela">
         </div>
 
@@ -61,25 +61,19 @@
     </div>
   </div>
 
-  <div id="novoColaborador" class="popup ocultarPopup">
+  <div id="novoFornecedor" class="popup ocultarPopup">
     <div class="janelaPopup">
         <div class="tituloPopup">
-            <div id="tituloPopup"> Novo Colaborador </div>
+            <div id="tituloPopup"> Novo Fornecedor </div>
             <img src="../../imgs/fechar.svg" class="btn_janelaoper" id="btn_fechar" title="fechar janela">
         </div>
 
         <div class="corpoPopup"> 
             <div class="campoForm">
-                <label for=""> Nome colaborador </label>
+                <label for=""> Nome Fornecedor </label>
                 <input type="text" id="f_nome" name="f_nome">
             </div>
 
-            <div class="campoForm">
-                <label for=""> Tipo </label>
-                <select name="f_tipo" id="f_tipoColab">
-                    <option value=""> </option>
-                </select>
-            </div>
 
             <div class="campoForm">
                 <label for=""> Status </label>
@@ -100,19 +94,6 @@
                 </label>
             </div>
 
-            <div class="campoForm">
-                <label for=""> Telefones </label>
-                <input type="text" id="f_telefone" name="f_telefone">
-                <div id="telefones" class="telefones">
-                  <!--  <div class="tel">
-                        <div class="numTel">
-                            988 4894794 2
-                        </div>
-                        <img src="../../imgs/deletar.svg" alt="lixeira" class="delTel" id="btn_delTel">
-                    </div>
-                  <-->
-                </div>
-            </div>
         </div>
             
         <div class="rodapePopup">
@@ -129,15 +110,13 @@
         <div id="tituloGrid" class="tituloGrid">
             <div class="colunaTituloGrid c1"> Id </div>
             <div class="colunaTituloGrid c2"> Nome </div>
-            <div class="colunaTituloGrid c3"> Tipo </div>
-            <div class="colunaTituloGrid c4"> Status </div>
-            <div class="colunaTituloGrid c5"> Op </div>
+            <div class="colunaTituloGrid c3"> Status </div>
+            <div class="colunaTituloGrid c4"> Op </div>
         </div>
         <div id="dadosGrid" class="dadosGrid">
            <!-- <div class="linhaGrid">
                 <div class="colunaLinhaGrid c1"> Id </div>
                 <div class="colunaLinhaGrid c2"> Nome </div>
-                <div class="colunaLinhaGrid c3"> Tipo </div>
                 <div class="colunaLinhaGrid c4"> Status </div>
                 <div class="colunaLinhaGrid c5"> Op </div>
             </div>  -->
@@ -147,6 +126,6 @@
 
     
     <script src="../../estoque_geral.js" type="module"></script>
-    <script src="colaboradores.js" type="module"></script>
+    <script src="fornecedores.js" type="module"></script>
 </body>
 </html>

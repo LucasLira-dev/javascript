@@ -28,3 +28,24 @@ body{
     border: 1px solid #000;
     border-radius: 5px;
 }
+
+
+/*lista de contatos*/
+
+#listaContatosForn{
+    z-index: 1010101010;
+}
+
+.c1_lcf{
+    width: 20px;
+}
+
+.c2_lcf{
+    width: 200px;
+}
+
+.c3_lcf{
+    width: 40px;
+    display: flex;
+    justify-content: space-around;
+}

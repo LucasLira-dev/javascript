@@ -243,7 +243,7 @@ const criarLinha=(item)=>{
     img_editar.addEventListener('click', (evt)=>{
         modojanela= 'e';
         telefones.innerHTML= '';
-        document.getElementById('tituloPopup').textContent= 'Editar Colaborador';
+        document.getElementById('tituloPopup').textContent= 'Editar Pessoa';
 
         const id= evt.target.parentNode.parentNode.firstChild.innerHTML;
 
@@ -303,7 +303,7 @@ fetch(endpoint_tiposColab)
 btn_add.addEventListener('click', (evt)=>{
     modojanela= 'n';
     novoColaborador.classList.remove('ocultarPopup')
-    document.getElementById('tituloPopup').textContent= 'Novo Colaborador';
+    document.getElementById('tituloPopup').textContent= 'Nova Pessoa';
 
     f_nome.value= '';
     f_tipoColab.value= '';
@@ -328,7 +328,7 @@ btn_gravar.addEventListener('click', (evt) => {
 
         const config={
             titulo: "Alerta",
-            texto: "Informe o nome do colaborador e pelo menos um telefone",
+            texto: "Informe o nome da pessoa e pelo menos um telefone",
             cor: "blue",
             tipo: "ok",
             comandook: ()=>{},
@@ -364,7 +364,7 @@ btn_gravar.addEventListener('click', (evt) => {
         fetch(endpointnovoeditarcolab, cab)
             .then(res => {
                 if (res.status === 200) {
-                    alert(modojanela === 'n' ? 'Colaborador cadastrado com sucesso' : 'Colaborador atualizado com sucesso');
+                    alert(modojanela === 'n' ? 'Pessoa cadastrada com sucesso' : 'Pessoa atualizada com sucesso');
 
                     f_nome.value = '';
                     f_tipoColab.value = '';
@@ -376,7 +376,7 @@ btn_gravar.addEventListener('click', (evt) => {
 
                     const config={
                         titulo: "ERRO",
-                        texto: "Erro ao gravar novo colaborador",
+                        texto: "Erro ao gravar nova pessoa",
                         cor: "blue",
                         tipo: "ok",
                         comandook: ()=>{},

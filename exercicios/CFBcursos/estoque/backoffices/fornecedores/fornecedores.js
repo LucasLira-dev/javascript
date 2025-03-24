@@ -14,7 +14,12 @@ const img_foto= document.getElementById('img_foto');
 const f_filtragem= document.getElementById('f_filtragem');
 
 const pesquisa= document.getElementById('pesquisa');
-const btn_fecharPopupPesq= document.getElementById('btn_fecharPopupPesq');
+const btn_fecharPopupPesq= document.getElementById('btn_fecharPopupPesq'); 
+
+const btn_fecharPopupListaContatos= document.getElementById('btn_fecharPopupListaContatos');
+const listaContatosForn= document.getElementById('listaContatosForn');
+const btn_listarContatosForn= document.getElementById('btn_listarContatosForn');
+
 const btn_pesq= document.getElementById('btn_pesq');
 const f_pesq= document.getElementById('f_pesq');
 const f_pesqId= document.getElementById('f_pesqId');
@@ -22,6 +27,40 @@ const f_pesqNome= document.getElementById('f_pesqNome');
 const btn_listarTudo= document.getElementById('btn_listarTudo');
 
 const btn_pesquisar= document.getElementById('btn_pesquisar');
+
+const dadosGrid_novosContatosForn= document.getElementById('dadosGrid_novosContatosForn');
+
+const criarLinhaContatoForn=(item)=>{
+
+    const endpoint= `${serv}todasPessoasForn`
+    fetch(endpoint)
+    .then(res=> res.json())
+    .then(res=>{
+        res.forEach(item=>{
+            const linhaGrid= document.createElement('div');
+            linhaGrid.setAttribute('class', 'linhaGrid');
+        
+            const divc1= document.createElement('div');
+            divc1.setAttribute('class', 'colunaLinhaGrid c1_lcf');
+            divc1.textContent= item.n_pessoa_pessoa;
+            linhaGrid.appendChild(divc1);
+        
+            const divc2= document.createElement('div');
+            divc2.setAttribute('class', 'colunaLinhaGrid c2_lcf');
+            divc2.textContent= item.s_nome_pessoa;
+            linhaGrid.appendChild(divc2);
+        
+            const divc3= document.createElement('div');
+            divc3.setAttribute('class', 'colunaLinhaGrid c3_lcf');
+            divc3.textContent= item.s_telefone_contato;        
+            linhaGrid.appendChild(divc3);
+        
+        
+            dadosGrid_novosContatosForn.appendChild(linhaGrid);
+     
+        })
+    })
+}
 
 
 f_filtragem.addEventListener('keyup', (evt)=>{
@@ -51,6 +90,16 @@ btn_fecharPopupPesq.addEventListener('click', (evt)=>
     pesquisa.classList.add('ocultarPopup');
 });
 
+btn_fecharPopupListaContatos.addEventListener('click', (evt)=>{
+    listaContatosForn.classList.add('ocultarPopup');
+})
+
+btn_listarContatosForn.addEventListener('click', (evt)=>{
+    listaContatosForn.classList.remove('ocultarPopup');
+    dadosGrid_novosContatosForn.innerHTML= '';
+    criarLinhaContatoForn();
+})
+
 f_pesqId.addEventListener('click', (evt)=>{
     f_pesq.value= '';
     f_pesq.focus();
@@ -69,7 +118,7 @@ btn_pesquisar.addEventListener('click', (evt)=>{
         tipo= 'nome';
     }
     if(f_pesq.value!= ''){
-        const endpointpesq= `${serv}pesquisacolab/${tipo}/${f_pesq.value}`;
+        const endpointpesq= `${serv}pesquisaforn/${tipo}/${f_pesq.value}`;
         fetch(endpointpesq)
         .then(res=> res.json())
         .then(res=>{
@@ -335,4 +384,6 @@ const converte_imagem_b64= (localDestino, arquivoimg)=>{
 f_foto.addEventListener('change', (evt)=>{
    converte_imagem_b64(img_foto, evt.target.files[0]); 
 })
+
+
 

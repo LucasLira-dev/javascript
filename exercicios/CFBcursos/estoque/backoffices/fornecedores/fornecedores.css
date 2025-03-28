@@ -49,3 +49,54 @@ body{
     display: flex;
     justify-content: space-around;
 }
+
+.tituloGrid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--azul-principal) !important;
+    color: #fff !important;
+    padding: 0 !important;
+}
+
+.colunaTituloGrid {
+    background-color: var(--azul-principal) !important; 
+}
+
+
+#dadosGrid_ContatosFornAdd{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000 !important;
+    padding: 0 !important;
+}
+
+.linhaGridForn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff !important;
+    color: #000 !important;
+    padding: 0 !important;
+    border: 2px solid var(--azul-principal) !important;
+}
+
+.linhaGridForn:hover{
+    background-color: var(--azul-principal) !important;
+    color: #000 !important;
+    
+}
+
+#dadosGrid_ContatosFornAdd .colunaLinhaGrid:hover{
+    color: white !important;
+    background-color: var(--azul-principal) !important;
+}
+
+
+
+
+/* numero de telefones */
+#telefonesContForn{
+    z-index: 101010101010;
+}

@@ -30,6 +30,86 @@ const btn_pesquisar= document.getElementById('btn_pesquisar');
 
 const dadosGrid_novosContatosForn= document.getElementById('dadosGrid_novosContatosForn');
 
+
+const dadosGrid_ContatosFornAdd= document.getElementById('dadosGrid_ContatosFornAdd');
+
+const telefonesContForn= document.getElementById('telefonesContForn');
+const btn_fecharPopuptelefonesContForn= document.getElementById('btn_fecharPopuptelefonesContForn');
+const dadosGrid_telefonesContForn= document.getElementById('dadosGrid_telefonesContForn');
+
+const addContForn=(id, nome)=>{
+    const linhaGrid= document.createElement('div');
+    linhaGrid.setAttribute('class', 'linhaGridForn novoContForn');
+        
+    const divc1= document.createElement('div');
+    divc1.setAttribute('class', 'colunaLinhaGrid c1_lcf');
+    divc1.textContent= id;
+    linhaGrid.appendChild(divc1);
+
+    const divc2= document.createElement('div');
+    divc2.setAttribute('class', 'colunaLinhaGrid c2_lcf');
+    divc2.textContent= nome;
+    linhaGrid.appendChild(divc2);
+
+    const divc3= document.createElement('div');
+    divc3.setAttribute('class', 'colunaLinhaGrid c3_lcf'); 
+
+    const img_removerContForn= document.createElement('img');
+   img_removerContForn.setAttribute('src', '../../imgs/deletar.svg');
+   img_removerContForn.setAttribute('class', 'img_editar iconeop');
+    img_removerContForn.addEventListener('click', (evt)=>{
+        const linha= evt.target.parentNode.parentNode;
+        linha.remove();
+    })
+
+    const img_verFoneContForn= document.createElement('img');
+    img_verFoneContForn.setAttribute('src', '../../imgs/verTelefone.svg');
+    img_verFoneContForn.setAttribute('class', 'img_editar iconeop');
+     img_verFoneContForn.addEventListener('click', (evt)=>{
+         const id= evt.target.parentNode.parentNode.firstChild.textContent;
+         const endpoint= `${serv}retornaTelefones/${id}`;
+         fetch(endpoint)
+         .then(res=> res.json())
+         .then(res=>{
+             dadosGrid_telefonesContForn.innerHTML= '';
+             telefonesContForn.classList.remove('ocultarPopup');
+             res.forEach(e=>{
+                 addTelefoneContForn(e.s_numero_telefone);
+                 
+             })
+         })
+     })
+
+     divc3.appendChild(img_verFoneContForn);
+
+    linhaGrid.appendChild(divc3)
+
+    divc3.appendChild(img_removerContForn);
+    linhaGrid.appendChild(divc3); 
+
+    dadosGrid_ContatosFornAdd.appendChild(linhaGrid);
+}
+
+
+const addTelefoneContForn=(telefone)=>{
+    const linhaGrid= document.createElement('div');
+    linhaGrid.setAttribute('class', 'linhaGridForn');
+
+    const divc1= document.createElement('div');
+    divc1.setAttribute('class', 'colunaLinhaGrid c2_lcf');
+    divc1.textContent= telefone;
+    linhaGrid.appendChild(divc1);
+;
+
+    dadosGrid_telefonesContForn.appendChild(linhaGrid);
+}
+
+
+btn_fecharPopuptelefonesContForn.addEventListener('click', (evt)=>{
+    telefonesContForn.classList.add('ocultarPopup');
+})
+
+
 const criarLinhaContatoForn=(item)=>{
 
     const endpoint= `${serv}todasPessoasForn`
@@ -38,7 +118,7 @@ const criarLinhaContatoForn=(item)=>{
     .then(res=>{
         res.forEach(item=>{
             const linhaGrid= document.createElement('div');
-            linhaGrid.setAttribute('class', 'linhaGrid');
+            linhaGrid.setAttribute('class', 'linhaGridForn');
         
             const divc1= document.createElement('div');
             divc1.setAttribute('class', 'colunaLinhaGrid c1_lcf');
@@ -46,13 +126,45 @@ const criarLinhaContatoForn=(item)=>{
             linhaGrid.appendChild(divc1);
         
             const divc2= document.createElement('div');
-            divc2.setAttribute('class', 'colunaLinhaGrid c2_lcf');
+            divc2.setAttribute('class', 'colunaLinhaGrid c2_lcf'); 
             divc2.textContent= item.s_nome_pessoa;
             linhaGrid.appendChild(divc2);
         
             const divc3= document.createElement('div');
-            divc3.setAttribute('class', 'colunaLinhaGrid c3_lcf');
-            divc3.textContent= item.s_telefone_contato;        
+            divc3.setAttribute('class', 'colunaLinhaGrid c3_lcf'); 
+
+            const img_removerContForn= document.createElement('img');
+           img_removerContForn.setAttribute('src', '../../imgs/addContForn.svg');
+           img_removerContForn.setAttribute('class', 'img_editar iconeop');
+            img_removerContForn.addEventListener('click', (evt)=>{
+                const linha= evt.target.parentNode.parentNode;
+                const id= linha.childNodes[0].textContent;
+                const nome= linha.childNodes[1].textContent;
+                addContForn(id, nome);
+            })
+
+            divc3.appendChild(img_removerContForn);
+
+            const img_verFoneContForn= document.createElement('img');
+           img_verFoneContForn.setAttribute('src', '../../imgs/verTelefone.svg');
+           img_verFoneContForn.setAttribute('class', 'img_editar iconeop');
+            img_verFoneContForn.addEventListener('click', (evt)=>{
+                const id= evt.target.parentNode.parentNode.firstChild.textContent;
+                const endpoint= `${serv}retornaTelefones/${id}`;
+                fetch(endpoint)
+                .then(res=> res.json())
+                .then(res=>{
+                    dadosGrid_telefonesContForn.innerHTML= '';
+                    telefonesContForn.classList.remove('ocultarPopup');
+                    res.forEach(e=>{
+                        addTelefoneContForn(e.s_numero_telefone);
+                        
+                    })
+                })
+            })
+
+            divc3.appendChild(img_verFoneContForn);
+
             linhaGrid.appendChild(divc3);
         
         
@@ -306,10 +418,19 @@ btn_gravar.addEventListener('click', (evt) => {
  
     } else {
 
+        const contat = [...document.querySelectorAll('.novoContForn')];
+       
+        let a_contat=[];
+        contat.forEach(t=>{
+            a_contat.push(t.firstChild.textContent);
+            
+        })
+
         const dados = {
             n_fornecedor_fornecedor: evt.target.dataset.idfornecedor,
             s_desc_fornecedor: f_nome.value,
             c_status_fornecedor: f_status.value,
+            listaContatos: a_contat,
             s_logo_fornecedor: img_foto.getAttribute('src')
         };
 

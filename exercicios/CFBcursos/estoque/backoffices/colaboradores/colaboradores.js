@@ -268,7 +268,7 @@ const criarLinha=(item)=>{
         .then(res=>{
             res.forEach(t=>{
                 criarCxTelefone(t.s_numero_telefone, t.n_telefone_telefone, "e");
-                carregarTodosColabs
+                
             })
             
             novoColaborador.classList.remove('ocultarPopup');
@@ -300,29 +300,6 @@ fetch(endpoint_tiposColab)
    
 });
 
-btn_add.addEventListener('click', (evt)=>{
-    modojanela= 'n';
-    novoColaborador.classList.remove('ocultarPopup')
-    document.getElementById('tituloPopup').textContent= 'Nova Pessoa';
-
-    f_nome.value= '';
-    f_tipoColab.value= '';
-    f_status.value= '';
-    img_foto.src= '';
-    telefones.innerHTML= '';
-})
-
-btn_fechar.addEventListener('click', (evt)=>{
-    novoColaborador.classList.add('ocultarPopup')
-    
-})
-
-btn_cancelar.addEventListener('click', (evt)=>{
-    novoColaborador.classList.add('ocultarPopup')
-})
-
-// 
-
 btn_gravar.addEventListener('click', (evt) => {
     if (f_nome.value.trim() === '' || telefones.children.length === 0) {
 
@@ -339,7 +316,7 @@ btn_gravar.addEventListener('click', (evt) => {
     } else {
         // Coleta todos os números de telefone (novos e existentes)
         const todosNumeros = [...document.querySelectorAll('.numTel')].map(tel => tel.textContent.trim());
-
+        
         const dados = {
             n_pessoa_pessoa: evt.target.dataset.idcolab,
             s_nome_pessoa: f_nome.value,
@@ -392,7 +369,32 @@ btn_gravar.addEventListener('click', (evt) => {
 
         novoColaborador.classList.add('ocultarPopup');
     }
-}); 
+});
+
+btn_add.addEventListener('click', (evt)=>{
+    modojanela= 'n';
+    novoColaborador.classList.remove('ocultarPopup')
+    document.getElementById('tituloPopup').textContent= 'Nova Pessoa';
+
+    f_nome.value= '';
+    f_tipoColab.value= '';
+    f_status.value= '';
+    img_foto.src= '';
+    telefones.innerHTML= '';
+})
+
+btn_fechar.addEventListener('click', (evt)=>{
+    novoColaborador.classList.add('ocultarPopup')
+    
+})
+
+btn_cancelar.addEventListener('click', (evt)=>{
+    novoColaborador.classList.add('ocultarPopup')
+})
+
+// 
+
+// 
 
 
 f_telefone.addEventListener('keyup', (evt)=>{

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Produtos - BackOffice</title>
+    <link rel="stylesheet" href="../../estoque_geral.css">
+    <link rel="stylesheet" href="produtos.css">
+</head>
+<body>
+    
+  <div id="topoJanela" class="topoJanela">
+        <div></div>
+        <div> Produtos </div>
+        <div>
+              <img src="../../imgs/lupa.svg" alt="lupa de pesquisa" class="btn_mainoper" id="btn_pesq"/>
+              <img src="../../imgs/listarTudo.svg" alt="listar-todos" class="btn_mainoper" id="btn_listarTudo"/>
+              <img src="../../imgs/adicionar.svg" class="btn_mainoper" title="adicionar novo operador" id="btn_add" > 
+        </div>
+  </div>
+
+  <div id="filtragem" class="filtragem ">
+    <div class="campoForm campoFiltragem">
+        <label for=""> Filtrar por produto </label>
+        <input type="text" id="f_filtragem" name="f_filtragem" class="campoFiltragem">
+    </div>
+  </div>
+
+  <div id="pesquisa" class="popup ocultarPopup">
+    <div class="janelaPopup">
+        <div class="tituloPopup">
+            <div id="tituloPopupPesquisar"> Pesquisar Pessoa </div>
+            <img src="../../imgs/fechar.svg" class="btn_janelaoper" id="btn_fecharPopupPesq" title="fechar janela">
+        </div>
+
+        <div class="corpoPopup"> 
+            <div class="campoForm">
+                <label for=""> Tipo da pesquisa </label>
+                <div class="campoRadio">
+                    <input type="radio" id="f_pesqId" name="f_pesqTipo" checked> Id
+                </div>
+                <div class="campoRadio">
+                    <input type="radio" id="f_pesqNome" name="f_pesqTipo"> Nome
+                </div>
+            </div>
+
+          
+
+            <div class="campoForm">
+                <input type="text" id="f_pesq" name="f_pesq"/> 
+            </div>
+
+        
+        </div>
+            
+        <div class="rodapePopup">
+            <button id="btn_pesquisar" class="btn_comandoPopup"> 
+                Pesquisar
+            </button>
+        </div>
+    </div>
+  </div>
+
+  <div id="novoColaborador" class="popup ocultarPopup">
+    <div class="janelaPopup">
+        <div class="tituloPopup">
+            <div id="tituloPopup"> Nova Pessoa </div>
+            <img src="../../imgs/fechar.svg" class="btn_janelaoper" id="btn_fechar" title="fechar janela">
+        </div>
+
+        <div class="corpoPopup"> 
+            <div class="campoForm">
+                <label for=""> Nome Pessoa  </label>
+                <input type="text" id="f_nome" name="f_nome">
+            </div>
+
+            <div class="campoForm">
+                <label for=""> Tipo </label>
+                <select name="f_tipo" id="f_tipoColab">
+                    <option value=""> </option>
+                </select>
+            </div>
+
+            <div class="campoForm">
+                <label for=""> Status </label>
+                <select name="f_status" id="f_status">
+                    <option value="A"> Ativo</option>
+                    <option value="I"> Inativo</option>
+                </select>
+            </div>
+
+            <div class="campoForm">
+                <label for="f_foto"> Foto </label>
+                <input type="file" accept="image/png, image/jpeg, image/jpg" name="f_foto" id="f_foto" class="input_foto"/>  
+            </div>
+
+            <div class="campoForm2">
+                <label for="f_foto"> 
+                    <img src="" alt="" id="img_foto" class="img_foto"/>
+                </label>
+            </div>
+
+            <div class="campoForm">
+                <label for=""> Telefones </label>
+                <input type="text" id="f_telefone" name="f_telefone">
+                <div id="telefones" class="telefones">
+                  <!--  <div class="tel">
+                        <div class="numTel">
+                            988 4894794 2
+                        </div>
+                        <img src="../../imgs/deletar.svg" alt="lixeira" class="delTel" id="btn_delTel">
+                    </div>
+                  <-->
+                </div>
+            </div>
+        </div>
+            
+        <div class="rodapePopup">
+            <button id="btn_gravar" class="btn_comandoPopup"> Gravar </button>
+            <button id="btn_cancelar" class="btn_comandoPopup"> Cancelar 
+
+            </button>
+        </div>
+    </div>
+  </div>
+
+  <div id="areaGrid" class="areaGrid">
+    <div id="grid" class="grid">
+        <div id="tituloGrid" class="tituloGrid">
+            <div class="colunaTituloGrid c1"> Id </div>
+            <div class="colunaTituloGrid c2"> Nome </div>
+            <div class="colunaTituloGrid c3"> Tipo </div>
+            <div class="colunaTituloGrid c4"> Status </div>
+            <div class="colunaTituloGrid c5"> Op </div>
+        </div>
+        <div id="dadosGrid" class="dadosGrid">
+           <!-- <div class="linhaGrid">
+                <div class="colunaLinhaGrid c1"> Id </div>
+                <div class="colunaLinhaGrid c2"> Nome </div>
+                <div class="colunaLinhaGrid c3"> Tipo </div>
+                <div class="colunaLinhaGrid c4"> Status </div>
+                <div class="colunaLinhaGrid c5"> Op </div>
+            </div>  -->
+        </div>
+    </div>
+  </div> 
+
+    
+    <script src="../../estoque_geral.js" type="module"></script>
+    <script src="produtos.js" type="module"></script>
+</body>
+</html>

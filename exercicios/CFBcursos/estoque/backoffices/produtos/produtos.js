@@ -1,18 +1,21 @@
 import {Cxmsg} from '../../utils/cxmsg.js';
 
+const novoProduto= document.getElementById('novoProduto');
+
 const dadosGrid= document.getElementById('dadosGrid');
 const btn_add= document.getElementById('btn_add');
-const novoColaborador= document.getElementById('novoColaborador');
+
 const btn_fechar= document.getElementById('btn_fechar');
 const btn_gravar= document.getElementById('btn_gravar');
 const btn_cancelar= document.getElementById('btn_cancelar');
-const telefones= document.getElementById('telefones');
-const f_telefone= document.getElementById('f_telefone');
-const f_nome= document.getElementById('f_nome');
-const f_tipoColab= document.getElementById('f_tipoColab');
-const f_status= document.getElementById('f_status');
+const f_descprod= document.getElementById('f_descprod');
+const f_tipoprod= document.getElementById('f_tipoprod');
+const f_statusprod= document.getElementById('f_statusprod');
+const f_codprod= document.getElementById('f_codprod');
+const f_qtdeprod= document.getElementById('f_qtdeprod');
+const f_fornprod= document.getElementById('f_fornprod');
 
-const f_foto= document.getElementById('f_foto');
+
 const img_foto= document.getElementById('img_foto');
 
 const f_filtragem= document.getElementById('f_filtragem');
@@ -106,7 +109,7 @@ btn_listarTudo.addEventListener('click', (evt)=>{
 
 
 
-// n= novo colaborador, e= editar colaborador
+// n= novo produto, e= editar produto
 let modojanela= 'n';
 const serv= sessionStorage.getItem('servidor_nodered');//pegando o servidor do nodered 
 
@@ -158,8 +161,8 @@ const criarCxTelefone=(fone, idtel, tipo)=>{
   
   
 const carregarTodosColabs=()=>{
-    const endpoint_todoscolaboradores= `${serv}todaspessoas`;
-fetch(endpoint_todoscolaboradores)
+    const endpoint_todosprodutoes= `${serv}todaspessoas`;
+fetch(endpoint_todosprodutoes)
 .then(res=> res.json())
 .then(res=>{
     dadosGrid.innerHTML= '';
@@ -259,7 +262,7 @@ const criarLinha=(item)=>{
             img_foto.src= res[0].s_foto_pessoa;
             
 
-            novoColaborador.classList.remove('ocultarPopup');
+            novoProduto.classList.remove('ocultarPopup');
         })
 
         endpoint= `${serv}telefonescolab/${id}`;
@@ -271,7 +274,7 @@ const criarLinha=(item)=>{
                 
             })
             
-            novoColaborador.classList.remove('ocultarPopup');
+            novoProduto.classList.remove('ocultarPopup');
         })
 
 
@@ -286,19 +289,7 @@ const criarLinha=(item)=>{
     dadosGrid.appendChild(linhaGrid);
 }
 
-const endpoint_tiposColab= `${serv}tiposcolab`;
-fetch(endpoint_tiposColab)
-.then(res=> res.json())
-.then(res=>{
-   f_tipoColab.innerHTML= '';
-    res.forEach(item=>{
-         const opt= document.createElement('option');
-         opt.setAttribute('value', item.n_tipopessoa_tipopessoa);
-         opt.textContent= item.s_desc_tipopessoa;
-         f_tipoColab.appendChild(opt);
-    })
-   
-});
+
 
 btn_gravar.addEventListener('click', (evt) => {
     if (f_nome.value.trim() === '' || telefones.children.length === 0) {
@@ -367,29 +358,51 @@ btn_gravar.addEventListener('click', (evt) => {
                 console.error('Erro na requisição:', err);
             });
 
-        novoColaborador.classList.add('ocultarPopup');
+        novoProduto.classList.add('ocultarPopup');
     }
 });
 
+
+const listaTiposProd=()=>{
+    const endpoint_tiposprod= `${serv}tiposprod`;
+fetch(endpoint_tiposprod)
+.then(res=> res.json())
+.then(res=>{
+   f_tipoprod.innerHTML= '';
+    res.forEach(item=>{
+         const opt= document.createElement('option');
+         opt.setAttribute('value', item.n_tipoproduto_tipoproduto);
+         opt.textContent= item.s_desc_tipoproduto;
+         f_tipoprod.appendChild(opt);
+    })
+.catch(err=>{
+    console.error('Erro:', err);
+})
+});
+}
+
 btn_add.addEventListener('click', (evt)=>{
     modojanela= 'n';
-    novoColaborador.classList.remove('ocultarPopup')
-    document.getElementById('tituloPopup').textContent= 'Nova Pessoa';
+    novoProduto.classList.remove('ocultarPopup')
+    document.getElementById('tituloPopup').textContent= 'Novo Produto';
 
-    f_nome.value= '';
-    f_tipoColab.value= '';
-    f_status.value= '';
-    img_foto.src= '';
-    telefones.innerHTML= '';
+    f_codprod.value= '';
+    f_descprod.value= '';
+    f_qtdeprod.value= '1';
+    f_tipoprod.value= '';
+    f_fornprod.value= '';
+    f_statusprod.value= 'A';
+    listaTiposProd();
+  
 })
 
 btn_fechar.addEventListener('click', (evt)=>{
-    novoColaborador.classList.add('ocultarPopup')
+    novoProduto.classList.add('ocultarPopup')
     
 })
 
 btn_cancelar.addEventListener('click', (evt)=>{
-    novoColaborador.classList.add('ocultarPopup')
+    novoProduto.classList.add('ocultarPopup')
 })
 
 // 
@@ -397,36 +410,4 @@ btn_cancelar.addEventListener('click', (evt)=>{
 // 
 
 
-f_telefone.addEventListener('keyup', (evt)=>{
-    if(evt.key==="Enter" && evt.target.value.trim()!=='' && evt.target.value.length>=8 && evt.target.value.length<=11){
-        criarCxTelefone(evt.target.value, '-1', "n");
-    }else{
-        if(evt.key==="Enter"){
-            const config={
-                titulo: "Erro",
-                texto: "Informe um número de telefone válido",
-                cor: "blue",
-                tipo: "ok",
-                comandook: ()=>{},
-                comandosim: ()=>{},
-                comandonao: ()=>{}
-            }
-        }
-    }
-})  
-
-const converte_imagem_b64= (localDestino, arquivoimg)=>{
-    const obj= arquivoimg
-    const reader= new FileReader();
-    reader.addEventListener('load', ()=>{
-        localDestino.src= reader.result;
-    })
-    if(obj){
-        reader.readAsDataURL(obj);
-    }
-}
-
-f_foto.addEventListener('change', (evt)=>{
-   converte_imagem_b64(img_foto, evt.target.files[0]); 
-})
 

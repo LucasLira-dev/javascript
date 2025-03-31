@@ -15,7 +15,8 @@
         <div>
               <img src="../../imgs/lupa.svg" alt="lupa de pesquisa" class="btn_mainoper" id="btn_pesq"/>
               <img src="../../imgs/listarTudo.svg" alt="listar-todos" class="btn_mainoper" id="btn_listarTudo"/>
-              <img src="../../imgs/adicionar.svg" class="btn_mainoper" title="adicionar novo operador" id="btn_add" > 
+              <img src="../../imgs/mov.svg" alt="btn-movimentacao" title="Movimentação de Estoque" class="btn_mainoper" id="btn_mov"/>
+              <img src="../../imgs/adicionar.svg" class="btn_mainoper" title="Cadastro de novo produto" id="btn_add" > 
         </div>
   </div>
 
@@ -61,10 +62,66 @@
     </div>
   </div>
 
-  <div id="novoColaborador" class="popup ocultarPopup">
+  <div id="novoProduto" class="popup ocultarPopup">
     <div class="janelaPopup">
         <div class="tituloPopup">
-            <div id="tituloPopup"> Nova Pessoa </div>
+            <div id="tituloPopup"> Novo Produto </div>
+            <img src="../../imgs/fechar.svg" class="btn_janelaoper" id="btn_fechar" title="fechar janela">
+        </div>
+
+        <div class="corpoPopup"> 
+
+            <div class="campoForm">
+                <label for="f_codprod"> Código Produto </label>
+                <input type="text" id="f_codprod" name="f_codprod">
+            </div>
+
+            <div class="campoForm">
+                <label for="f_descprod"> Descrição Produto </label>
+                <input type="text" id="f_descprod" name="f_descprod">
+            </div>
+
+            <div class="campoForm">
+                <label for="f_qtdeprod"> Quantidade Produto </label>
+                <input type="number" id="f_qtdeprod" name="f_qtdeprod" min="0" value="1">
+            </div>
+
+            <div class="campoForm">
+                <label for="f_tipoprod"> Tipo Produto </label>
+                <select name="f_tipoprod" id="f_tipoprod">
+                    <option value="teste"> teste </option>
+                </select>
+            </div>
+
+            <div class="campoForm">
+                <label for="f_fornprod"> Fornecedor </label>
+                <select name="f_fornprod" id="f_fornprod">
+                    <option value=""> </option>
+                </select>
+            </div>
+
+            <div class="campoForm">
+                <label for="f_statusprod"> Status </label>
+                <select name="f_statusprod" id="f_statusprod">
+                    <option value="A"> Ativo</option>
+                    <option value="I"> Inativo</option>
+                </select>
+            </div>
+        </div>
+            
+        <div class="rodapePopup">
+            <button id="btn_gravar" class="btn_comandoPopup"> Gravar </button>
+            <button id="btn_cancelar" class="btn_comandoPopup"> Cancelar 
+
+            </button>
+        </div>
+    </div>
+  </div>
+
+  <div id="movEstoque" class="popup ocultarPopup">
+    <div class="janelaPopup">
+        <div class="tituloPopup">
+            <div id="tituloPopup"> Movimentação de estoque </div>
             <img src="../../imgs/fechar.svg" class="btn_janelaoper" id="btn_fechar" title="fechar janela">
         </div>
 
@@ -89,34 +146,11 @@
                 </select>
             </div>
 
-            <div class="campoForm">
-                <label for="f_foto"> Foto </label>
-                <input type="file" accept="image/png, image/jpeg, image/jpg" name="f_foto" id="f_foto" class="input_foto"/>  
-            </div>
-
-            <div class="campoForm2">
-                <label for="f_foto"> 
-                    <img src="" alt="" id="img_foto" class="img_foto"/>
-                </label>
-            </div>
-
-            <div class="campoForm">
-                <label for=""> Telefones </label>
-                <input type="text" id="f_telefone" name="f_telefone">
-                <div id="telefones" class="telefones">
-                  <!--  <div class="tel">
-                        <div class="numTel">
-                            988 4894794 2
-                        </div>
-                        <img src="../../imgs/deletar.svg" alt="lixeira" class="delTel" id="btn_delTel">
-                    </div>
-                  <-->
-                </div>
-            </div>
+           
         </div>
             
         <div class="rodapePopup">
-            <button id="btn_gravar" class="btn_comandoPopup"> Gravar </button>
+            <button id="btn_gravar" class="btn_comandoPopup"> Registrar Movimentação </button>
             <button id="btn_cancelar" class="btn_comandoPopup"> Cancelar 
 
             </button>

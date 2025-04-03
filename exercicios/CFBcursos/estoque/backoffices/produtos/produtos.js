@@ -16,8 +16,6 @@ const f_qtdeprod= document.getElementById('f_qtdeprod');
 const f_fornprod= document.getElementById('f_fornprod');
 
 
-const img_foto= document.getElementById('img_foto');
-
 const f_filtragem= document.getElementById('f_filtragem');
 
 const pesquisa= document.getElementById('pesquisa');
@@ -29,6 +27,49 @@ const f_pesqNome= document.getElementById('f_pesqNome');
 const btn_listarTudo= document.getElementById('btn_listarTudo');
 
 const btn_pesquisar= document.getElementById('btn_pesquisar');
+
+const serv= sessionStorage.getItem('servidor_nodered');//pegando o servidor do nodered 
+
+
+
+const listaTiposProd=()=>{
+    const endpoint_tiposprod= `${serv}tiposprod`;
+fetch(endpoint_tiposprod)
+.then(res=> res.json())
+.then(res=>{
+   f_tipoprod.innerHTML= '';
+    res.forEach(item=>{
+         const opt= document.createElement('option');
+         opt.setAttribute('value', item.n_tipoproduto_tipoproduto);
+         opt.textContent= item.s_desc_tipoproduto;
+         f_tipoprod.appendChild(opt);
+    })
+.catch(err=>{
+    console.error('Erro:', err);
+})
+});
+}
+
+const listaFornProd=()=>{
+    const endpoint_fornprod= `${serv}fornprod`;
+fetch(endpoint_fornprod)
+.then(res=> res.json())
+.then(res=>{
+   f_fornprod.innerHTML= '';
+    res.forEach(item=>{
+         const opt= document.createElement('option');
+         opt.setAttribute('value', item.n_fornecedor_fornecedor);
+         opt.textContent= item.s_desc_fornecedor;
+         f_fornprod.appendChild(opt);
+    })
+.catch(err=>{
+    console.error('Erro:', err);
+})
+});
+}
+
+listaTiposProd();
+listaFornProd();
 
 
 f_filtragem.addEventListener('keyup', (evt)=>{
@@ -111,52 +152,51 @@ btn_listarTudo.addEventListener('click', (evt)=>{
 
 // n= novo produto, e= editar produto
 let modojanela= 'n';
-const serv= sessionStorage.getItem('servidor_nodered');//pegando o servidor do nodered 
 
 
-const criarCxTelefone=(fone, idtel, tipo)=>{
-    const divTel= document.createElement('div');
-    divTel.setAttribute('class', 'tel');
+// const criarCxTelefone=(fone, idtel, tipo)=>{
+//     const divTel= document.createElement('div');
+//     divTel.setAttribute('class', 'tel');
 
-      // Verifica se o número já existe na lista
-      const numerosExistentes = [...document.querySelectorAll('.numTel')].map(tel => tel.textContent.trim());
-      if (numerosExistentes.includes(fone.trim())) {
-          return; // Sai da função se o número já existir
-      }
+//       // Verifica se o número já existe na lista
+//       const numerosExistentes = [...document.querySelectorAll('.numTel')].map(tel => tel.textContent.trim());
+//       if (numerosExistentes.includes(fone.trim())) {
+//           return; // Sai da função se o número já existir
+//       }
   
 
       
-      const divNumTel = document.createElement('div');
-      divNumTel.setAttribute('class', tipo === "n" ? 'numTel novoTel' : 'numTel editarTel');
-      divNumTel.textContent = fone;
+//       const divNumTel = document.createElement('div');
+//       divNumTel.setAttribute('class', tipo === "n" ? 'numTel novoTel' : 'numTel editarTel');
+//       divNumTel.textContent = fone;
   
-      const Lixeira = document.createElement('img');
-      Lixeira.setAttribute('src', '../../imgs/deletar.svg');
-      Lixeira.setAttribute('class', 'delTel');
-      Lixeira.setAttribute("data-idtel", idtel);
+//       const Lixeira = document.createElement('img');
+//       Lixeira.setAttribute('src', '../../imgs/deletar.svg');
+//       Lixeira.setAttribute('class', 'delTel');
+//       Lixeira.setAttribute("data-idtel", idtel);
   
-      Lixeira.addEventListener('click', (evt) => {
+//       Lixeira.addEventListener('click', (evt) => {
          
-        const objTel = evt.target;
-        const idtel = objTel.getAttribute('data-idtel'); 
-        if (idtel !== '-1') {
+//         const objTel = evt.target;
+//         const idtel = objTel.getAttribute('data-idtel'); 
+//         if (idtel !== '-1') {
   
-              const endpoint_delTelefone = `${serv}deltelefone/${idtel}`;
-              fetch(endpoint_delTelefone)
-                  .then(res => {
-                      if (res.status === 200) {
-                          evt.target.parentElement.remove();
-                      }
-                  });
-          } else {
-              evt.target.parentElement.remove();
-          }
-      });
+//               const endpoint_delTelefone = `${serv}deltelefone/${idtel}`;
+//               fetch(endpoint_delTelefone)
+//                   .then(res => {
+//                       if (res.status === 200) {
+//                           evt.target.parentElement.remove();
+//                       }
+//                   });
+//           } else {
+//               evt.target.parentElement.remove();
+//           }
+//       });
   
-      divTel.appendChild(divNumTel);
-      divTel.appendChild(Lixeira);
-      telefones.appendChild(divTel);
-  };
+//       divTel.appendChild(divNumTel);
+//       divTel.appendChild(Lixeira);
+//       telefones.appendChild(divTel);
+//   };
 
   
   
@@ -249,22 +289,23 @@ const criarLinha=(item)=>{
     img_editar.setAttribute('class', 'img_editar iconeop');
     img_editar.addEventListener('click', (evt)=>{
         modojanela= 'e';
-        document.getElementById('tituloPopup').textContent= 'Editar Pessoa';
+        document.getElementById('tituloPopup').textContent= 'Editar Produto';
 
         const id= evt.target.parentNode.parentNode.firstChild.innerHTML;
 
-        let endpoint= `${serv}dadoscolab/${id}`;
+        let endpoint= `${serv}dadosproduto/${id}`;
         fetch(endpoint)
         .then(res=> res.json())
         .then(res=>{
             btn_gravar.setAttribute('data-idprod', id);
 
-            f_nome.value= res[0].s_nome_pessoa;
-            f_tipoColab.value= res[0]. n_tipopessoa_tipopessoa;
-            f_status.value= res[0].c_status_pessoa;
-            img_foto.src= res[0].s_foto_pessoa;
+            f_codprod.value= res[0].n_cod_produto;
+            f_descprod.value= res[0].s_desc_produto;
+            f_qtdeprod.value= res[0].n_qtde_produto;
+            f_tipoprod.value= res[0].n_tipoProduto_tipoProduto;
+            f_fornprod.value= res[0].n_fornecedor_fornecedor;
+            f_statusprod.value= res[0].c_status_produto;
             
-
             novoProduto.classList.remove('ocultarPopup');
         })
     })
@@ -305,7 +346,7 @@ btn_gravar.addEventListener('click', (evt) => {
         if (modojanela == 'n') {
             endpointnovoeditarcolab = `${serv}novoprod`;
         } else {
-            endpointnovoeditarcolab = `${serv}editarcolab`;
+            endpointnovoeditarcolab = `${serv}editarprod`;
         }
 
         fetch(endpointnovoeditarcolab, cab)
@@ -342,41 +383,6 @@ btn_gravar.addEventListener('click', (evt) => {
 });
 
 
-const listaTiposProd=()=>{
-    const endpoint_tiposprod= `${serv}tiposprod`;
-fetch(endpoint_tiposprod)
-.then(res=> res.json())
-.then(res=>{
-   f_tipoprod.innerHTML= '';
-    res.forEach(item=>{
-         const opt= document.createElement('option');
-         opt.setAttribute('value', item.n_tipoproduto_tipoproduto);
-         opt.textContent= item.s_desc_tipoproduto;
-         f_tipoprod.appendChild(opt);
-    })
-.catch(err=>{
-    console.error('Erro:', err);
-})
-});
-}
-
-const listaFornProd=()=>{
-    const endpoint_fornprod= `${serv}fornprod`;
-fetch(endpoint_fornprod)
-.then(res=> res.json())
-.then(res=>{
-   f_fornprod.innerHTML= '';
-    res.forEach(item=>{
-         const opt= document.createElement('option');
-         opt.setAttribute('value', item.n_fornecedor_fornecedor);
-         opt.textContent= item.s_desc_fornecedor;
-         f_fornprod.appendChild(opt);
-    })
-.catch(err=>{
-    console.error('Erro:', err);
-})
-});
-}
 
 btn_add.addEventListener('click', (evt)=>{
     modojanela= 'n';

@@ -15,7 +15,6 @@
         <div>
               <img src="../../imgs/lupa.svg" alt="lupa de pesquisa" class="btn_mainoper" id="btn_pesq"/>
               <img src="../../imgs/listarTudo.svg" alt="listar-todos" class="btn_mainoper" id="btn_listarTudo"/>
-              <img src="../../imgs/mov.svg" alt="btn-movimentacao" title="Movimentação de Estoque" class="btn_mainoper" id="btn_mov"/>
               <img src="../../imgs/adicionar.svg" class="btn_mainoper" title="Cadastro de novo produto" id="btn_add" > 
         </div>
   </div>
@@ -122,38 +121,38 @@
     <div class="janelaPopup">
         <div class="tituloPopup">
             <div id="tituloPopup"> Movimentação de estoque </div>
-            <img src="../../imgs/fechar.svg" class="btn_janelaoper" id="btn_fechar" title="fechar janela">
+            <img src="../../imgs/fechar.svg" class="btn_janelaoper" id="btn_fecharPopupMov" title="fechar janela">
         </div>
 
         <div class="corpoPopup"> 
             <div class="campoForm">
-                <label for=""> Nome Pessoa  </label>
-                <input type="text" id="f_nome" name="f_nome">
+                <label for="f_codprodmov"> Código Produto  </label>
+                <input type="text" id="f_codprodmov" name="f_codprodmov" readonly>
             </div>
 
             <div class="campoForm">
-                <label for=""> Tipo </label>
-                <select name="f_tipo" id="f_tipoColab">
-                    <option value=""> </option>
-                </select>
+                <label for="f_descprodmov"> Descrição </label>
+                <input type="text" name="f_descprodmov" id="f_descprodmov" readonly>
             </div>
 
             <div class="campoForm">
-                <label for=""> Status </label>
-                <select name="f_status" id="f_status">
-                    <option value="A"> Ativo</option>
-                    <option value="I"> Inativo</option>
-                </select>
+                <label for="f_qtdeprodmov"> Quantidade </label>
+                <input type="text" name="f_qtdeprodmov" id="f_qtdeprodmov" readonly>
+            </div>
+
+            <div class="campoForm">
+                <label for="f_qtdeprodregmov"> Quantidade a ser registrada </label>
+                <input type="number" value="0" min="0" name="f_qtdeprodregmov" id="f_qtdeprodregmov">
             </div>
 
            
         </div>
             
         <div class="rodapePopup">
-            <button id="btn_gravar" class="btn_comandoPopup"> Registrar Movimentação </button>
-            <button id="btn_cancelar" class="btn_comandoPopup"> Cancelar 
-
-            </button>
+            <button id="btn_addqtde" class="btn_comandoPopup"> Adicionar </button>
+            <button id="btn_removeqtde" class="btn_comandoPopup"> Remover </button>
+            <button id="btn_gravarmov" class="btn_comandoPopup"> Gravar </button>
+            <button id="btn_cancelarPopupMov" class="btn_comandoPopup"> Cancelar </button>
         </div>
     </div>
   </div>

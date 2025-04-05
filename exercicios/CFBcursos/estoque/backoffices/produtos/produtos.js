@@ -28,6 +28,17 @@ const btn_listarTudo= document.getElementById('btn_listarTudo');
 
 const btn_pesquisar= document.getElementById('btn_pesquisar');
 
+const movEstoque= document.getElementById('movEstoque');
+const btn_fecharPopupMov= document.getElementById('btn_fecharPopupMov');
+const btn_addqtde= document.getElementById('btn_addqtde');
+const btn_removeqtde= document.getElementById('btn_removeqtde');
+const btn_cancelarPopupMov= document.getElementById('btn_cancelarPopupMov');
+const f_codprodmov= document.getElementById('f_codprodmov');
+const f_descprodmov= document.getElementById('f_descprodmov');
+const f_qtdeprodmov= document.getElementById('f_qtdeprodmov');
+const f_qtdeprodregmov= document.getElementById('f_qtdeprodregmov');
+const btn_gravarmov= document.getElementById('btn_gravarmov');
+
 const serv= sessionStorage.getItem('servidor_nodered');//pegando o servidor do nodered 
 
 
@@ -44,9 +55,6 @@ fetch(endpoint_tiposprod)
          opt.textContent= item.s_desc_tipoproduto;
          f_tipoprod.appendChild(opt);
     })
-.catch(err=>{
-    console.error('Erro:', err);
-})
 });
 }
 
@@ -62,9 +70,6 @@ fetch(endpoint_fornprod)
          opt.textContent= item.s_desc_fornecedor;
          f_fornprod.appendChild(opt);
     })
-.catch(err=>{
-    console.error('Erro:', err);
-})
 });
 }
 
@@ -117,7 +122,7 @@ btn_pesquisar.addEventListener('click', (evt)=>{
         tipo= 'nome';
     }
     if(f_pesq.value!= ''){
-        const endpointpesq= `${serv}pesquisacolab/${tipo}/${f_pesq.value}`;
+        const endpointpesq= `${serv}pesquisaprod/${tipo}/${f_pesq.value}`;
         fetch(endpointpesq)
         .then(res=> res.json())
         .then(res=>{
@@ -311,13 +316,110 @@ const criarLinha=(item)=>{
     })
     divc5.appendChild(img_editar);
 
-    const img_excluir= document.createElement('img');
-    img_excluir.setAttribute('src', '../../imgs/deletar.svg');
-    img_excluir.setAttribute('class', 'img_excluir iconeop');
-    divc5.appendChild(img_excluir);
+    const img_movimentar= document.createElement('img');
+    img_movimentar.setAttribute('src', '../../imgs/mov.svg');
+    img_movimentar.setAttribute('class', 'img_excluir iconeop');
+    img_movimentar.addEventListener('click', (evt)=>{
+        const st= evt.target.parentNode.parentNode.childNodes[3].textContent;
+        if(st==='A'){
+            movEstoque.classList.remove('ocultarPopup');
+            f_codprodmov.value = evt.target.parentNode.parentNode.firstChild.innerHTML;
+            f_descprodmov.value = evt.target.parentNode.parentNode.childNodes[1].innerHTML;
+            f_qtdeprodmov.value = evt.target.parentNode.parentNode.childNodes[2].innerHTML;
+
+        }else{
+            const config={
+                titulo: "Alerta",
+                texto: "Produto inativo não pode ser editado",
+                cor: "blue",
+                tipo: "ok",
+                comandook: ()=>{},
+                comandosim: ()=>{},
+                comandonao: ()=>{}
+            }
+            Cxmsg.mostrar(config)
+        }
+    });
+    divc5.appendChild(img_movimentar);
 
     dadosGrid.appendChild(linhaGrid);
 }
+
+btn_gravarmov.addEventListener('click', (evt)=>{
+
+})
+
+btn_fecharPopupMov.addEventListener('click', (evt)=>{
+    movEstoque.classList.add('ocultarPopup');
+})
+
+btn_cancelarPopupMov.addEventListener('click', (evt)=>{
+    movEstoque.classList.add('ocultarPopup');
+})
+
+btn_addqtde.addEventListener('click', (evt)=>{
+    let qtdeatual= parseInt(f_qtdeprodmov.value);
+    let qtdeadd=  parseInt(f_qtdeprodregmov.value);
+
+    if(qtdeadd<0){
+        const config={
+            titulo: "Alerta",
+            texto: "Adicione uma quantidade",
+            tipo: "ok",
+            comandook: ()=>{},
+            comandosim: ()=>{},
+            comandonao: ()=>{}
+        }
+        Cxmsg.mostrar(config)
+        return;
+    }
+
+    qtdeatual+= qtdeadd;
+
+    f_qtdeprodmov.value= qtdeatual;
+    f_qtdeprodregmov.value= "0;"
+})
+
+btn_removeqtde.addEventListener('click', (evt)=>{
+    let qtdeatual = parseInt(f_qtdeprodmov.value) || 0; // Valor padrão 0 se estiver vazio
+    let qtderem = parseInt(f_qtdeprodregmov.value) || 0; // Valor padrão 0 se estiver vazio
+
+    // Verifica se a quantidade a remover é negativa
+    if (qtderem < 0) {
+        const config = {
+            titulo: "Alerta",
+            texto: "A quantidade a remover não pode ser negativa.",
+            cor: "blue",
+            tipo: "ok",
+            comandook: () => {},
+            comandosim: () => {},
+            comandonao: () => {}
+        };
+        Cxmsg.mostrar(config);
+        return;
+    }
+
+    // Verifica se a quantidade a remover é maior que a quantidade atual
+    if (qtderem <= qtdeatual) {
+        qtdeatual -= qtderem;
+        f_qtdeprodmov.value = qtdeatual;
+    } else {
+        const config = {
+            titulo: "Alerta",
+            texto: "Quantidade a retirar maior do que a quantidade atual.",
+            cor: "blue",
+            tipo: "ok",
+            comandook: () => {},
+            comandosim: () => {},
+            comandonao: () => {}
+        };
+        Cxmsg.mostrar(config);
+        return;
+    }
+
+    // Reseta o campo de quantidade a remover
+    f_qtdeprodregmov.value = "0";
+})
 
 
 
@@ -335,7 +437,7 @@ btn_gravar.addEventListener('click', (evt) => {
             n_fornecedor_fornecedor: f_fornprod.value,
             n_qtde_produto: f_qtdeprod.value, // Envia todos os números
             c_status_produto: f_statusprod.value
-        };
+        }; 
 
         const cab = {
             method: 'post',

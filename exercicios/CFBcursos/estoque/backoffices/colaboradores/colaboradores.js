@@ -27,6 +27,8 @@ const btn_listarTudo= document.getElementById('btn_listarTudo');
 
 const btn_pesquisar= document.getElementById('btn_pesquisar');
 
+const f_email= document.getElementById('f_email');
+
 
 f_filtragem.addEventListener('keyup', (evt)=>{
     const linhas= [...document.querySelectorAll('.linhaGrid')];
@@ -320,6 +322,9 @@ btn_gravar.addEventListener('click', (evt) => {
         const dados = {
             n_pessoa_pessoa: evt.target.dataset.idcolab,
             s_nome_pessoa: f_nome.value,
+            s_email_pessoa: f_email.value,
+            s_senha_pessoa: "",
+            n_primaacess: 1,
             n_tipopessoa_tipopessoa: f_tipoColab.value,
             c_status_pessoa: f_status.value,
             numtelefones: todosNumeros, // Envia todos os números

@@ -32,7 +32,6 @@ const movEstoque= document.getElementById('movEstoque');
 const btn_fecharPopupMov= document.getElementById('btn_fecharPopupMov');
 const btn_addqtde= document.getElementById('btn_addqtde');
 const btn_removeqtde= document.getElementById('btn_removeqtde');
-const btn_cancelarPopupMov= document.getElementById('btn_cancelarPopupMov');
 const f_codprodmov= document.getElementById('f_codprodmov');
 const f_descprodmov= document.getElementById('f_descprodmov');
 const f_qtdeprodmov= document.getElementById('f_qtdeprodmov');
@@ -346,14 +345,25 @@ const criarLinha=(item)=>{
 }
 
 btn_gravarmov.addEventListener('click', (evt)=>{
+    const dados ={
+        n_cod_produto: f_codprodmov.value,
+        n_qtde_produto: f_qtdeprodmov.value
+    }
 
+    const cab = {
+        method: 'post',
+        body: JSON.stringify(dados)
+    }
+
+    const endpointmov= `${serv}editarmovprod`;
+    fetch(endpointmov, cab)
+    .then(res=>{
+        carregarTodosProds();
+        movEstoque.classList.add('ocultarPopup');
+    })
 })
 
 btn_fecharPopupMov.addEventListener('click', (evt)=>{
-    movEstoque.classList.add('ocultarPopup');
-})
-
-btn_cancelarPopupMov.addEventListener('click', (evt)=>{
     movEstoque.classList.add('ocultarPopup');
 })
 

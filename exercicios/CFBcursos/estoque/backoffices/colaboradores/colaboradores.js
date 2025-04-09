@@ -2,7 +2,7 @@ import {Cxmsg} from '../../utils/cxmsg.js';
 
 const dadosGrid= document.getElementById('dadosGrid');
 const btn_add= document.getElementById('btn_add');
-const novoColaborador= document.getElementById('novoColaborador');
+const novoColaborador= document.getElementById('novoColaborador'); 
 const btn_fechar= document.getElementById('btn_fechar');
 const btn_gravar= document.getElementById('btn_gravar');
 const btn_cancelar= document.getElementById('btn_cancelar');
@@ -192,7 +192,7 @@ const criarLinha=(item)=>{
     divc3.setAttribute('class', 'colunaLinhaGrid c3');
     divc3.textContent= item.n_tipopessoa_tipopessoa
     ;
-    linhaGrid.appendChild(divc3);
+    linhaGrid.appendChild(divc3); 
 
     const divc4= document.createElement('div');
     divc4.setAttribute('class', 'colunaLinhaGrid c4');
@@ -256,6 +256,7 @@ const criarLinha=(item)=>{
             btn_gravar.setAttribute('data-idcolab', id);
 
             f_nome.value= res[0].s_nome_pessoa;
+            f_email.value= res[0].s_email_pessoa;
             f_tipoColab.value= res[0]. n_tipopessoa_tipopessoa;
             f_status.value= res[0].c_status_pessoa;
             img_foto.src= res[0].s_foto_pessoa;
@@ -324,7 +325,7 @@ btn_gravar.addEventListener('click', (evt) => {
             s_nome_pessoa: f_nome.value,
             s_email_pessoa: f_email.value,
             s_senha_pessoa: "",
-            n_primaacess: 1,
+            n_primacess_pessoa: 1,
             n_tipopessoa_tipopessoa: f_tipoColab.value,
             c_status_pessoa: f_status.value,
             numtelefones: todosNumeros, // Envia todos os números
@@ -349,6 +350,7 @@ btn_gravar.addEventListener('click', (evt) => {
                     alert(modojanela === 'n' ? 'Pessoa cadastrada com sucesso' : 'Pessoa atualizada com sucesso');
 
                     f_nome.value = '';
+                    f_email.value = '';
                     f_tipoColab.value = '';
                     f_status.value = '';
                     img_foto.src = '';
@@ -382,6 +384,7 @@ btn_add.addEventListener('click', (evt)=>{
     document.getElementById('tituloPopup').textContent= 'Nova Pessoa';
 
     f_nome.value= '';
+    f_email.value= '';
     f_tipoColab.value= '';
     f_status.value= '';
     img_foto.src= '';

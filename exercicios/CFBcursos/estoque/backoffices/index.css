@@ -1,23 +1,21 @@
-.topo{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--azul-principal);
-    color: #fff;
-    height: 30px;
-  
+label{
+    display: block;
+    margin-bottom: 5px;
+   
 }
 
-.logo{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
+.criarNovaConta p{
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    color: #414040;
+    font-weight: 400;
+    border-bottom: 2px solid #d9d9d9;
+    cursor: pointer;
 }
 
-.config{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+.criarNovaConta p:hover{
+    
+    border-bottom: 1px solid #000;
 }

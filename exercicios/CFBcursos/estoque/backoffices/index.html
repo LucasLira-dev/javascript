@@ -1,53 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estoque - BackOffice</title>
-    <link rel="stylesheet" href="../estoque_geral.css">
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../estoque_geral.css" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div id="primeiroAcesso" class="popup ocultarPopup">
+      <div class="janelaPopup">
+        <div class="tituloPopup">
+          <h1>Definição de senha</h1>
+          <button id="btn_fecharPopupDefSenha" class="btn_janelaoper">X</button>
+        </div>
+        <div class="corpoPopup">
+          <div class="campoForm">
+            <label for="f_emailDefSenha"> E-mail </label>
+            <input type="email" name="f_emailDefSenha" id="f_emailDefSenha" />
+          </div>
 
- 
-   <div id="menuPrincipal" class="menuPrincipal ocultar"> 
-      
+          <div class="campoForm">
+            <label for="f_senha"> Senha </label>
+            <input
+              type="password"
+              name="f_senha1"
+              id="f_senha1"
+              placeholder="Senha"
+              required
+            />
+          </div>
 
-        <div class="menuItens ">
-            <a href="./colaboradores/colaboradores.html" target="fprincipal" class="btn_menuItem"> Pessoas </a>
-            <a href="./fornecedores/fornecedores.html" class="btn_menuItem" target="fprincipal"> Fornecedores </a>
-            <a href="./produtos/produtos.html" target="fprincipal" class="btn_menuItem"> Produtos </a>
-            <a href="#" class="btn_menuItem">CFB cursos</a>
-            <a href="#" class="btn_menuItem">CFB cursos</a>
-            <a href="#" class="btn_menuItem">CFB cursos</a>
+          <div class="campoForm">
+            <label for="f_senha2"> Repetir Senha </label>
+            <input
+              type="password"
+              name="f_senha2"
+              id="f_senha2"
+              placeholder="Repetir Senha"
+              required
+            />
+          </div>
         </div>
 
-        <div>
-             <img src="../imgs/menu.svg" alt="menu"   class="btn_menuPrincipal" id="btn_menuPrincipal"/>
+        <div class="rodapePopup">
+          <button id="btn_gravarNovoLogin" class="btn_comandoPopup">Gravar</button>
         </div>
-   </div>
+      </div>
+    </div>
 
-   <div id="topo" class="topo">
-        <div></div>
-        <div id="logo" class="logo"> Logo </div>
-        <div id="config" class="config"> 
-               <div>
-                    <div> Id </div>
-                    <div> Nome </div>
-               </div>
-               <div>
-                    <img src="../imgs/config.svg" alt="" id="btn_config" class="btn_config">
-               </div>
+    <div id="login" class="popup">
+      <div class="janelaPopup">
+        <div class="tituloPopup">
+          <h1>Login</h1>
         </div>
-   </div>
 
-   <div id="principal" class="principal">
-        <iframe src="" frameborder="0" name="fprincipal" width="100%" height="100vh" id="fprincipal"></iframe>
-   </div>
+        <div class="corpoPopup">
+          <div class="campoForm">
+            <label for="f_email"> E-mail </label>
+            <input
+              type="email"
+              name="f_email"
+              id="f_email"
+              placeholder="Usuário"
+              required
+            />
+          </div>
 
+          <div class="campoForm">
+            <label for=""> Senha </label>
+            <input
+              type="password"
+              name="f_senha"
+              id="f_senha"
+              placeholder="Senha"
+              required
+            />
+          </div>
 
-    
+          <div class="criarNovaConta" id="criarNovaConta">
+            <p> Criar nova conta </p>
+          </div>
+        </div>
+
+        <div class="rodapePopup">
+          <button id="btn_login" class="btn_comandoPopup">Login</button>
+        </div>
+      </div>
+    </div>
+
     <script src="../estoque_geral.js" type="module"></script>
     <script src="index.js" type="module"></script>
-</body>
+  </body>
 </html>

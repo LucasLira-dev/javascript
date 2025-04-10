@@ -15,6 +15,9 @@ const btn_fecharPopupDefSenha= document.getElementById('btn_fecharPopupDefSenha'
 const criarNovaConta= document.getElementById('criarNovaConta');
 
 
+sessionStorage.clear();
+
+
 
 let serv= null;
 
@@ -44,6 +47,8 @@ btn_login.addEventListener('click', (e)=>{
         .then(res => {
             console.log(res[0])
             if (res[0].retorno === 200) { // OK
+                sessionStorage.setItem('n_pessoa_pessoa', res[0].n_pessoa_pessoa);
+                sessionStorage.setItem('s_nome_pessoa', res[0].s_nome_pessoa);
                 window.location.href= './main.html';
             } else if (res[0].retorno === 208) { // SENHA ERRADA
                alert('Senha errada!');
